@@ -1,0 +1,316 @@
+                        /*global + profil actuel*/
+
+.profil-container{
+    border: solid red 2px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFD7D7;
+    
+}
+
+.profil-container h1{
+    margin: 0 auto;
+    padding: 2%;
+    color: #FD2D01;
+    text-decoration: overline;
+}
+
+.update-container{
+    border: solid green 2px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.update-container h3{
+    padding: 5% 0;
+    text-decoration: underline double #FD2D01;
+}
+
+.update-container h4{
+    margin: 2% auto 0 auto;
+    width: auto;
+    border-bottom: double #FD2D01 4px;
+}
+
+.left-card{
+    width: 75%;
+    border: solid blue 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 5%;
+    font-weight: bold;
+    font-size: large;
+
+}
+
+.nav-profilPage{
+    border: solid black 2px; 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-end;
+    height: 50%;
+    
+
+   
+}
+
+#profil-update,#profil-delete,#profil,#profil-current{
+    width: 80%;
+    margin: 3% auto;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+
+}
+
+#profil-update:hover,#profil-delete:hover,#profil:hover,#profil-current:hover{
+   cursor: pointer;
+    
+}
+
+#update-profilPicture{
+    width: 100%;
+    border: solid red 3px;
+    height: 16rem;
+    background-color: white;
+    
+}
+
+.left-card p{
+    width: 100%;
+    border: solid red 3px;
+    margin-top: 3% ;
+    background-color: white;
+    height: 2rem;
+
+}
+
+#current-bio{
+    height: 6rem;
+}
+
+.contact-admin{
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    color:black;
+    border: solid yellow 3px;
+}
+
+.contact-admin:hover{
+    border: solid #FD2D01 2px;
+    border-radius: 10%;
+    background-color: white;
+    color: #FD2D01;
+    font-weight: bold;
+}
+
+.admin{
+    border: solid green 2px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-end;
+    
+    
+
+   
+}
+
+
+li.active-btn {
+    border: solid #FD2D01 2px;
+    width: 100px;
+    border-radius: 10%;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 3px 3px 1px rgba(51, 51, 51, 0.418);
+    transition: 0.1s;
+    font-size: large;
+    font-weight: bold;
+    color: #FD2D01;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+li.active-btn:active {
+    color: #4E5166;
+}
+
+.right-card{
+    border:solid maroon 3px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+
+
+
+.right-card-bottom{
+    border: solid yellow 5px;
+    height: 50%;
+    display: flex;
+   
+}
+
+.update-profil-container,.delete-profil-container{
+    width: 50%;
+}
+
+
+.full-card{
+    border: solid black 10px;
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+                        /*DELETE ACCOUNT PAGE*/
+
+
+.delete-profil-container{
+    width: 100%;
+}
+
+#delete-account-motivation{
+    margin: 5% 0;
+   
+    
+}
+
+#delete-account{
+    width: 70%;
+   height: 70%;
+   margin-top: 2%;
+   padding: 1% 2%;
+   border: double #FD2D01 3px;
+   
+
+    
+}
+
+.sad-goodbyes{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+
+}
+/*.delete-validation{
+   padding: 2%;
+   margin: 2% 0;
+}*/
+
+.submit-delete-account{
+    margin: 2%;
+
+ 
+
+}
+
+.label-submit{
+    padding-top: 2% ;
+    height: 55%;
+}
+
+.image-container{
+    width: 100%;
+    height: 45%;
+    border: double #FD2D01 3px
+}
+
+.delete-validation{
+    border: solid #FD2D01 2px;
+    width: 100px;
+    border-radius: 10%;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 3px 3px 1px rgba(51, 51, 51, 0.418);
+    transition: 0.1s;
+    font-size: large;
+    font-weight: bold;
+    color: #FD2D01;
+    margin: 2%;
+}
+
+.delete-validation:hover{
+    color: #4E5166;
+}
+
+.delete-validation:active{
+    background-color: #FD2D01;
+    
+}
+
+/*.left-card{
+    background-image: url(../../public/img/sad-goodbyes.jpeg);
+}*/
+
+
+                        /*Update Profil*/
+
+
+.profil-picture-update-label{
+    font-weight: bold;
+    font-size: 1.17em;
+}
+
+#update-profil-form input{
+    width: 80%;
+    text-align: center;
+    font-weight: 900;
+    
+}
+
+#firstName,#lastName,#userName,#email{
+    height: 2rem;
+}
+
+#bio{
+    height:6rem;
+    width: 80%;
+    font-weight: 900;
+    font-size: 1.17em;
+}
+
+.update-profil-submit{
+    border: solid #FD2D01 2px;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 3px 3px 1px rgb(51 51 51 / 42%);
+    transition: 0.1s;
+    font-size: large;
+    font-weight: bold;
+    padding: 1%;
+    color: #FD2D01;
+}
+
+.update-profil-submit:hover{
+    background-color: #FFD7D7;
+    color: #4E5166;
+}
+
+.update-profil-submit:active{
+    background-color: #FD2D01;
+    color: #4E5166;
+}
+
+#update-profil-form label{
+    font-weight: bold;
+    border-bottom: double #FD2D01 4px;
+
+}
+
+.field.error{
+   border: solid purple 2px;
+}
