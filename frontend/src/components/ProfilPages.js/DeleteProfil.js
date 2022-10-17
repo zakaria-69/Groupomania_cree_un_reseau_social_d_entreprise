@@ -24,8 +24,9 @@ class DeleteProfil extends Component {
                     <br />
                     <div className='submit-delete-account'>
                         <input type='submit'
-                            name="delete-validation"
-                            className='delete-validation'>
+                        id='delete-profil-validation'
+                            name="delete-profil-validation"
+                            className='delete-profil-validation'>
                         </input>
                     </div>
                 </div>

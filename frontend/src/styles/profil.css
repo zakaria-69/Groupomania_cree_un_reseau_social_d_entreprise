@@ -229,7 +229,7 @@ li.active-btn:active {
     border: double #FD2D01 3px
 }
 
-.delete-validation{
+.delete-profil-validation{
     border: solid #FD2D01 2px;
     width: 100px;
     border-radius: 10%;
@@ -243,11 +243,11 @@ li.active-btn:active {
     margin: 2%;
 }
 
-.delete-validation:hover{
+.delete-profil-validation:hover{
     color: #4E5166;
 }
 
-.delete-validation:active{
+.delete-profil-validation:active{
     background-color: #FD2D01;
     
 }

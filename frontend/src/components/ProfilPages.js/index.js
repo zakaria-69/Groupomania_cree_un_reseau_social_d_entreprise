@@ -1,14 +1,37 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState ,useEffect} from 'react';
 import UpdateProfil from './UpdateProfil';
 import DeleteProfil from './DeleteProfil';
 import CurrentProfil from './CurrentProfil';
+import axios from 'axios';
 
 const ProfilPages = () => {
     const [updateProfilModal, setUpdateProfilModal] = useState(false);
     const [deleteProfilModal, setDeleteProfilModal] = useState(false);
     const [currentProfilModal, setCurrentProfilModal] = useState(true);
+    const [userInfos,setUserInfos] = useState('');
+    const userId=localStorage.getItem('userId');
+
+    useEffect(() =>{
+        const getUser = async() => {
+            axios.get(`${process.env.REACT_APP_API_URL}api/users/`+userId,
+            {headers : {authorization : 'bearer '+ localStorage.getItem('token')},
+            Accept :  'application/json',
+            'Content-Type': 'application/json',
+            
+          })
+          .then((res) => {
+           setUserInfos(res.data)
+           // console.log('userInfos',userInfos);
+                })
+        .catch((err)=>console.log(err));
+        
+        };
+        getUser();
+    },[])
 
     const handleModals = (e) => {
+      
+
         if (e.target.id === "profil-update") {
             setUpdateProfilModal(true);
             setDeleteProfilModal(false);
@@ -28,7 +51,7 @@ const ProfilPages = () => {
     return (
         <div>
             <div className='profil-container'>
-                <h1>Profil de 'nom dynamique'</h1>
+                <h1>Profil de {userInfos.firstName} {userInfos.lastName}</h1>
            
                 <div className='full-card'>
                 <div className='left-card'>
