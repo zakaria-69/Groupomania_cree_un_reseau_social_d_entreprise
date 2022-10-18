@@ -92,7 +92,8 @@
 }
 
 #current-bio{
-    height: 6rem;
+    height: auto;
+    word-wrap: break-word;
 }
 
 .contact-admin{
