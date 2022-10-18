@@ -33,7 +33,7 @@ const CurrentProfil= () => {
                         <img id='update-profilPicture' src='#' alt='user-profil-picture' />
                         <h4>Prénom</h4>
                         <p >{userInfos.firstName}</p>
-                        <h4>Nom</h4>
+                        <h4>Nom</h4>   
                         <p>{userInfos.lastName}</p>
                         <h4>Pseudo</h4>
                         <p>{userInfos.userName}</p>

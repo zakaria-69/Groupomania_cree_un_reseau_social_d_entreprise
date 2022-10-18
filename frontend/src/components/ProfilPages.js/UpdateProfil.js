@@ -32,13 +32,6 @@ const UpdateProfil = () => {
         getUser();
     }, [])
 
-    //console.log('userInfos2',userInfos.firstName)
-
-
-
-
-
-
     const handleUpdateProfil = async (e) => {
         e.preventDefault();
 
@@ -92,7 +85,6 @@ const UpdateProfil = () => {
                     isValidForm = false;
                 }
             }
-
             if (lastName === '') {
                 lastName = userInfos.lastName;
             } else {
@@ -107,7 +99,6 @@ const UpdateProfil = () => {
                     isValidForm = false;
                 }
             }
-
             if (userName === '') {
                 userName = userInfos.userName;
             } else {
@@ -122,23 +113,16 @@ const UpdateProfil = () => {
                     isValidForm = false;
                 }
             }
-
-
             if (bio === '') {
                 bio = userInfos.bio;
             }
-
-
             if (isValidForm) {
-
                 await axios({
                     method: "patch",
                     url: `${process.env.REACT_APP_API_URL}api/users/` + userId,
                     headers: { authorization: 'bearer ' + localStorage.getItem('token') },
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-
-
                     data: {
                         profilPicture,
                         firstName,
@@ -147,33 +131,18 @@ const UpdateProfil = () => {
                         // email,
                         bio
                     },
-
-
-
                 })
-
-
-
-
                     .then((res) => {
-
-
-
                         console.log("res1", res)
 
                         console.log('resdata', res.data)
                         console.log("userInfos from res patch", userInfos)
                         alert('Felicitations ! Vôtre compte à été modifié avec succès  👍')
                         window.location = '/profil';
-
-
-
                     })
                     .catch((res) => {
                         console.log(res)
-                        fieldError.innerHTML = res.response.data.error.errors[0].message
-
-
+                        //fieldError.innerHTML = res.response.data.error.errors[0].message;
                     })
             }
         } else {
@@ -181,9 +150,6 @@ const UpdateProfil = () => {
         }
 
     }
-
-
-
     return (
         <div className='updtate-profil-container'>
             <form action='' onSubmit={handleUpdateProfil} id="update-profil-form">
@@ -205,13 +171,11 @@ const UpdateProfil = () => {
                     id="firstName"
                     defaultValue={userInfos.firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                //value={firstName}
                 />
                 <div className='firstName error'></div>
                 <br />
 
                 {/*lastName*/}
-
                 <label htmlFor='lastName'>Nom</label>
                 <br />
                 <input type='text'
@@ -219,14 +183,11 @@ const UpdateProfil = () => {
                     id="lastName"
                     defaultValue={userInfos.lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                //value={lastName} 
                 />
                 <div className='lastName error'></div>
                 <br />
 
-
                 {/*userName*/}
-
                 <label htmlFor='userName'>Pseudo</label>
                 <br />
                 <input type='text'
@@ -234,30 +195,13 @@ const UpdateProfil = () => {
                     id="userName"
                     defaultValue={userInfos.userName}
                     onChange={(e) => setUserName(e.target.value)}
-                //value={userName}
                 />
                 <div className='userName error'></div>
                 <br />
 
-                {/*email
-
-            <label htmlFor='email'>email</label>
-            <br />
-            <input type='text'
-                name='email'
-                id="email"
-                defaultValue={userInfos.email}
-                onChange={(e) => setEmail(e.target.value)}
-               // value={email} 
-                />
-            <div className='email error'></div>
-            <br / >/}
-
-            {/*bio */}
-
+                {/*bio */}
                 <label htmlFor='bio'>Bio</label>
                 <br />
-                console.log(userInfos.bio)
                 <textarea type='bio'
                     name='bio'
                     id="bio"
@@ -265,16 +209,12 @@ const UpdateProfil = () => {
                     rows='10'
                     defaultValue={userInfos.bio}
                     onChange={(e) => setBio(e.target.value)}
-                //value={bio}
                 />
                 <div className='bio error'></div>
                 <br />
                 <div className='field error' id='field'></div>
                 <br></br>
                 <input type="submit" value='mettre à jour le profil' className='update-profil-submit' />
-
-
-
             </form>
         </div>
 

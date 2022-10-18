@@ -17,7 +17,6 @@
 }
 
 .update-container{
-    border: solid green 2px;
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -37,7 +36,6 @@
 
 .left-card{
     width: 75%;
-    border: solid blue 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,7 +47,6 @@
 }
 
 .nav-profilPage{
-    border: solid black 2px; 
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -71,12 +68,15 @@
 
 #profil-update:hover,#profil-delete:hover,#profil:hover,#profil-current:hover{
    cursor: pointer;
+   color: #FD2D01;
+   background-color: white;
+   border: solid #FD2D01 2px;
     
 }
 
 #update-profilPicture{
     width: 100%;
-    border: solid red 3px;
+    border: double #FD2D01 3px;
     height: 16rem;
     background-color: white;
     
@@ -84,7 +84,7 @@
 
 .left-card p{
     width: 100%;
-    border: solid red 3px;
+    border: double #FD2D01 3px;
     margin-top: 3% ;
     background-color: white;
     height: 2rem;
@@ -100,7 +100,6 @@
     justify-content: center;
     font-size: large;
     color:black;
-    border: solid yellow 3px;
 }
 
 .contact-admin:hover{
@@ -112,7 +111,6 @@
 }
 
 .admin{
-    border: solid green 2px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -145,7 +143,7 @@ li.active-btn:active {
 }
 
 .right-card{
-    border:solid maroon 3px;
+    border-left: double #FD2D01 3px;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -157,7 +155,7 @@ li.active-btn:active {
 
 
 .right-card-bottom{
-    border: solid yellow 5px;
+    border-top: double #FD2D01 3px;
     height: 50%;
     display: flex;
    
@@ -169,7 +167,7 @@ li.active-btn:active {
 
 
 .full-card{
-    border: solid black 10px;
+    border: double #FD2D01 3px;
     display: flex;
     width: 80%;
     margin: 0 auto;
@@ -213,20 +211,25 @@ li.active-btn:active {
 
 .submit-delete-account{
     margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
 
  
 
 }
 
-.label-submit{
+.to-user-delete-message{
     padding-top: 2% ;
-    height: 55%;
+   
+    display: flex;
+    flex-direction: column;
 }
 
 .image-container{
     width: 100%;
-    height: 45%;
-    border: double #FD2D01 3px
 }
 
 .delete-profil-validation{
@@ -313,4 +316,18 @@ li.active-btn:active {
 
 .field.error{
    border: solid purple 2px;
+}
+
+#to-user-delete-message{
+    height: auto;
+    border: double #FD2D01 3px;
+   
+}
+
+.warning-delete-account{
+    border: double red 3px;
+    display: flex;
+    margin-top: 2%;
+    color: #FD2D01;
+    text-decoration: underline #FD2D01;
 }
