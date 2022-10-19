@@ -1,0 +1,84 @@
+.posts-flow-container{
+    border: solid red 2px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.posts-flow-subcontainer{
+    border: solid black 2px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.posts-flow-display{
+    border: solid green 2px;
+    width: 80%;
+    margin-top: 2%;
+   
+}
+.card{
+    border:solid yellow 3px;
+}
+
+/*gestion en tête de Card*/
+
+.header-card{
+    border: solid maroon 3px;
+    display: flex;
+}
+
+.date-style-handler{
+    border: solid red 2px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date-style-handler span{
+    padding: 1% 0;
+}
+
+.userName-card{
+    border: solid purple 2px;
+    width: 60%;
+    display: flex;
+    align-items: center;
+
+}
+
+/*Gestion body Card*/
+
+.body-card{
+    border: solid blue 2px;
+    height: 15rem;
+    width: 80%;
+    margin: 2% auto;
+   
+
+}
+
+/*Gestion footer Card*/
+.footer-card{
+    border: solid black 2px;
+    padding: 2% 1%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer-card span{
+    border: solid orangered 2px;
+    margin-left:2%;
+
+}
+
+.footer-card button{
+    width: 1.5rem;
+    height:1.5rem;
+}
