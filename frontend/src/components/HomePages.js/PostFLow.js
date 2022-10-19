@@ -22,16 +22,15 @@ const PostFLow = () => {
                 })
                 .catch((err) => console.log(err));
         };getAllPosts()
-    },[PostFLow])
+    },[])
 
 
     return (
         <div className='posts-flow-subcontainer'>
             <div className='posts-flow-display'>
-                <ul>
-                    <Card />
+                <Card />
 
-                </ul>
+
            
 
             </div>

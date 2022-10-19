@@ -1,3 +1,7 @@
+/*● Primaire : #FD2D01
+● Secondaire : #FFD7D7
+● Tertiaire : #4E5166*/
+
 .posts-flow-container{
     border: solid red 2px;
     width: 100%;
@@ -5,6 +9,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #FFD7D7;
 }
 
 .posts-flow-subcontainer{
@@ -23,22 +28,35 @@
    
 }
 .card{
-    border:solid yellow 3px;
+    background-color: #FFD7D7;
+    border: double #FD2D01 3px;
 }
 
 /*gestion en tête de Card*/
 
 .header-card{
-    border: solid maroon 3px;
     display: flex;
+    background-color: white;
+    border-bottom: double #FD2D01 3px;
 }
 
 .date-style-handler{
-    border: solid red 2px;
     width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-left: double #FD2D01 3px;
+}
+
+.post-title{
+    border-bottom: double #FD2D01 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 1%;
+    margin-top: 1%;
 }
 
 .date-style-handler span{
@@ -46,36 +64,56 @@
 }
 
 .userName-card{
-    border: solid purple 2px;
     width: 60%;
     display: flex;
     align-items: center;
+    justify-content: center;
+
 
 }
 
 /*Gestion body Card*/
 
 .body-card{
-    border: solid blue 2px;
     height: 15rem;
     width: 80%;
     margin: 2% auto;
+    border: double #FD2D01 3px;
    
 
 }
 
+.post-imageUrl{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /*Gestion footer Card*/
 .footer-card{
-    border: solid black 2px;
     padding: 2% 1%;
     display: flex;
     justify-content: flex-end;
+    background-color: #FFD7D7;
+    border-top: double #FD2D01 3px;
 }
 
 .footer-card span{
-    border: solid orangered 2px;
     margin-left:2%;
+    position: relative;
 
+}
+
+#post-like-number{
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    transform: translate(-30%,50%);
+    color: #FFD7D7;
+    font-weight: 900;
+    border-radius: 50%;
+    border: solid #FD2D01 1px;
+    background-color: #4E5166;
 }
 
 .footer-card button{
