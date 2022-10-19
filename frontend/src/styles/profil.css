@@ -1,7 +1,6 @@
                         /*global + profil actuel*/
 
 .profil-container{
-    border: solid red 2px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -87,7 +86,7 @@
     border: double #FD2D01 3px;
     margin-top: 3% ;
     background-color: white;
-    height: 2rem;
+    padding: 1% 0;
 
 }
 
@@ -273,6 +272,7 @@ li.active-btn:active {
     width: 80%;
     text-align: center;
     font-weight: 900;
+    padding: 1% 0;
     
 }
 
@@ -315,10 +315,6 @@ li.active-btn:active {
 
 }
 
-.field.error{
-   border: solid purple 2px;
-}
-
 #to-user-delete-message{
     height: auto;
     border: double #FD2D01 3px;
@@ -331,4 +327,5 @@ li.active-btn:active {
     margin-top: 2%;
     color: #FD2D01;
     text-decoration: underline #FD2D01;
+    font-size: 1.3rem;
 }
