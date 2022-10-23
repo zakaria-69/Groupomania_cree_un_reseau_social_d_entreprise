@@ -1,9 +1,13 @@
 import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from './Card';
+import EditPost from './EditPost';
+
 
 const PostFLow = () => {
-    const [allPosts,setAllPosts] = useState('');
+    const [allPostsDatas,setAllPostsDatas] = useState('');
+   // handleCardDisplay();
+   const [postDataI, setPostDataI] = useState ('');
     
 
     //récuperation des posts via la route getAllPosts
@@ -17,18 +21,41 @@ const PostFLow = () => {
 
                 })
                 .then((res) => {
-                    setAllPosts(res.data)
-                    console.log('allPosts',allPosts)
+                    setAllPostsDatas(res.data)
+                    console.log('allPostsData',allPostsDatas)
                 })
                 .catch((err) => console.log(err));
         };getAllPosts()
-    },[])
+    },[PostFLow])
+
+    useEffect(() => {
+    const displayAllCards = async () => {
+        for (let i = 0; i < allPostsDatas.length; i++){ 
+           console.log('allpostsData[i]',allPostsDatas[i])
+           console.log('ok')
+         //  return allPostsDatas[i];
+         // handleCardDisplay();
+         setPostDataI(allPostsDatas[i])
+         console.log('psotDataI ====',postDataI)
+
+
+        }
+    };displayAllCards();
+    },[allPostsDatas])
 
 
     return (
         <div className='posts-flow-subcontainer'>
             <div className='posts-flow-display'>
-                <Card />
+            <EditPost />
+                <ul>
+                    {allPostsDatas && 
+                    allPostsDatas.map((post) =>{
+                        console.log('postfrom map : ',post)
+                        return <Card post={post} key={post.id}/>
+                    })
+                    }
+                </ul>
 
 
            

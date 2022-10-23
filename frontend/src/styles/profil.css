@@ -57,7 +57,7 @@
 }
 
 #profil-update,#profil-delete,#profil,#profil-current{
-    width: 80%;
+    width: 90%;
     margin: 3% auto;
     font-size: large;
     display: flex;
@@ -282,9 +282,13 @@ li.active-btn:active {
 
 #bio{
     height:6rem;
-    width: 80%;
     font-weight: 900;
     font-size: 1.17em;
+    max-height: 12rem;
+    min-height: 2rem;
+    max-width: 80%;
+    min-width: 80%;
+    border: solid green 2px;
 }
 
 .update-profil-submit{
