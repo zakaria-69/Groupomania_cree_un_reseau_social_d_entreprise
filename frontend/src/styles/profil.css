@@ -74,9 +74,11 @@
 }
 
 #image{
-    width: 100%;
+    width: 80%;
     border: double #FD2D01 3px;
     background-color: white;
+   margin: 2% auto;
+
     
 }
 
