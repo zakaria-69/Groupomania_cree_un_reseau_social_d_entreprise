@@ -1,7 +1,8 @@
 import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Card = () => {
+const Card = (data) => {
+    const [myPost,setMyPost] = useState('');
     const [userInfos, setUserInfos] = useState('');
     const [allPostsDatas, setAllPostsDatas] = useState('');
     let [createdAt,setCreatedAt] = useState('');
@@ -12,14 +13,19 @@ const Card = () => {
     let [postLikeNumber,setPostLikeNumber] = useState('');
     let [postContentText,setPostContentText] = useState('');
     let [postTitle,setPostTitle] = useState('');
+ 
+    const post = data.post;
+   // JSON.parse(post)
+    //console.log('jsonPaarse ==',JSON.parse(post))
 
-    const userId = localStorage.getItem('userId');
+
+    //setMyPost(post);
 
     //get user pour recuperer les data du user connecter
 
     useEffect(() => {
         const getUser = async () => {
-            axios.get(`${process.env.REACT_APP_API_URL}api/users/` + userId,
+            axios.get(`${process.env.REACT_APP_API_URL}api/users/` + post.UserId,
                 {
                     headers: { authorization: 'bearer ' + localStorage.getItem('token') },
                     Accept: 'application/json',
@@ -61,34 +67,25 @@ const Card = () => {
     useEffect(() => {
     const handleCardDisplay = () => {
        // console.log(allPostsDatas[0].UserId)
-        if (allPostsDatas === '' || allPostsDatas === null) {
-            console.log('aucun posts à afficher')
-        } else {
-            for (let i = 0; i < allPostsDatas.length; i++) {
-               // if (allPostsDatas[i].UserId === userInfos.id) {
-                    console.log('userInfos.id', userInfos.userName)
-                     setCreatedAt(allPostsDatas[i].createdAt);
-                     console.log('createdAt',createdAt)
-                     setUpdatedAt(allPostsDatas[i].updatedAt);
-                     console.log('updatedAt',updatedAt)
-                     setUid(allPostsDatas[i].UserId);
-                     console.log('uid',uid);
-                     setPostId(allPostsDatas[i].id);
-                     console.log('postId',postId);
-                     setImageUrl(allPostsDatas[i].imageUrl);
-                     console.log('imageUrl',imageUrl);
-                     setPostLikeNumber(allPostsDatas[i].like);
-                     console.log('postLikeNumber',postLikeNumber);
-                     setPostContentText(allPostsDatas[i].text);
-                     console.log('postContentText',postContentText)
-                    setPostTitle(allPostsDatas[i].title);
-                     console.log('postTitle',postTitle);
-              //  }
-               
-            } 
-        };
+       setCreatedAt(post.createdAt);
+       //  console.log('createdAt',createdAt)
+        setUpdatedAt(post.updatedAt);
+       //  console.log('updatedAt',updatedAt)
+        setUid(post.UserId);
+       //  console.log('uid',uid);
+        setPostId(post.id);
+       //  console.log('postId',postId);
+        setImageUrl(post.imageUrl);
+       //  console.log('imageUrl',imageUrl);
+        setPostLikeNumber(post.like);
+       //  console.log('postLikeNumber',postLikeNumber);
+        setPostContentText(post.text);
+       //  console.log('postContentText',postContentText)
+       setPostTitle(post.title);
+       //  console.log('postTitle',postTitle);
+  
     };return  handleCardDisplay();
-},[allPostsDatas])
+},[userInfos])
 
 //conversion des date et heures en jours lettre entier date 2 digit année 4 chiffres + heures minutes secondes
 const timeStampHandler = (num) =>{

@@ -14,6 +14,7 @@ exports.signup = (req, res, next) => {
             const user = new User({
                 ...userObject,
                 password: hash,
+                //cannot read filename 
                 profilPicture: req.file !== undefined ?`${req.protocol}://${req.get('host')}/images/${req.file.filename}` : ""
             });
             user.save()

@@ -19,10 +19,10 @@ exports.createPost = (req, res, next) => {
         UserId: req.auth.userId,
 
         //cannot read properties of undefined readin filename
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl:  /*req.file !== undefined ?*/`${req.protocol}://${req.get('host')}/images/${req.file.filename}` //: ""
     });
     post.save()
-        .then(() => { res.status(201).json({ message: 'Objet enregistré !' }) })
+        .then(() => { res.status(201).json({ message: 'Post crée avec succès !' }) })
         .catch(error => { res.status(400).json({ error }) })
 };
 

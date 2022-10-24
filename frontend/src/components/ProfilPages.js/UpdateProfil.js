@@ -36,15 +36,15 @@ const UpdateProfil = () => {
         e.preventDefault();
 
         console.log('**START HANDLE UPDATE PROFILE**');
-        console.log('userInfos :' + userInfos);
-        //console.log('profilPicture :'+profilPicture);
+        console.log('userInfos :', userInfos);
+        console.log('profilPicture :'+profilPicture);
         console.log('firstName :' + firstName);
         console.log('lastName :' + lastName);
         console.log('userName :' + userName);
         console.log('bio :' + bio);
         console.log('**END HANDLE UPDATE PROFILE**');
 
-        if (firstName != '' || lastName != '' || userName != '' || bio != '') {
+        if (firstName != '' || lastName != '' || userName != '' || bio != '' || profilPicture !='') {
             //gestion des champs
             //const profilPictureValidation = document.getElementById('profilPicture');
             const firstNameValidation = document.getElementById('firstName');
@@ -158,7 +158,8 @@ const UpdateProfil = () => {
                 <br />
                 <input type='file'
                     name='profilPicture'
-                    id="update-profilPicture"
+                    className="update-profilPicture"
+                    id='profilPicture'
                     accept='.jpg, .png, .jpeg, .gif'
                     onChange={(e) => setProfilPicture(e.target.value)}
                     value={userInfos.profilPicture} />

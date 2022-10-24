@@ -35,14 +35,14 @@ const ConnectionForm = () => {
         const userNameError = document.querySelector('.userName.error');
         const emailError = document.querySelector('.email.error');
 
-        passwordCheckError.innerHTML = "";
-        termsError.innerHTML = "";
-        firstNameError.innerHTML="";
-        lastNameError.innerHTML="";
-        userNameError.innerHTML="";
-        emailError.innerHTML="";
-        fieldError.innerHTML="";
-        passwordError.innerHTML="";
+        passwordCheckError.textContent = "";
+        termsError.textContent = "";
+        firstNameError.textContent="";
+        lastNameError.textContent="";
+        userNameError.textContent="";
+        emailError.textContent="";
+        fieldError.textContent="";
+        passwordError.textContent="";
 
 
 
@@ -158,7 +158,7 @@ const ConnectionForm = () => {
     })
                 .catch((res) =>{
                     console.log(res)
-                fieldError.innerHTML=res.response.data.error.errors[0].message           
+                //fieldError.innerHTML=res.response.data.error.errors[0].message           
 
 
                 } )

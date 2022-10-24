@@ -34,10 +34,10 @@
 /*Gestion post edit*/
 
 .post-edit{
-    border: solid red 3px;
     display: flex;
     flex-direction: column;
-    margin: 2%;
+    border: double #FD2D01 3px;
+    width: 100%;
 }
 
 .post-edit h3{
@@ -58,6 +58,8 @@
     width: 80%;
     padding: 2%;
     border: double #FD2D01 3px;
+    word-wrap: break-word;
+    max-width: 80%;
 
 }
 

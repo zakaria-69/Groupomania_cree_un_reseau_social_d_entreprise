@@ -30,7 +30,7 @@ const CurrentProfil= () => {
             <div>
                 <div className='update-container'>
                         <h3>Image de profil</h3>
-                        <img id='update-profilPicture' src='#' alt='user-profil-picture' />
+                        <img id='update-profilPicture' src={userInfos.profilPicture} alt='user-profil-picture' />
                         <h4>Prénom</h4>
                         <p >{userInfos.firstName}</p>
                         <h4>Nom</h4>   
