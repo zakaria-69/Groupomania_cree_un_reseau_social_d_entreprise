@@ -6,7 +6,7 @@ const UpdateProfil = () => {
     let [userInfos, setUserInfos] = useState('');
     const userId = localStorage.getItem('userId');
     //   console.log(userId)
-    let [profilPicture, setProfilPicture] = useState('');
+    let [image, setImage] = useState('');
     let [firstName, setFirstName] = useState('');
     let [lastName, setLastName] = useState('');
     let [userName, setUserName] = useState('');
@@ -37,16 +37,16 @@ const UpdateProfil = () => {
 
         console.log('**START HANDLE UPDATE PROFILE**');
         console.log('userInfos :', userInfos);
-        console.log('profilPicture :'+profilPicture);
+        console.log('image :'+image);
         console.log('firstName :' + firstName);
         console.log('lastName :' + lastName);
         console.log('userName :' + userName);
         console.log('bio :' + bio);
         console.log('**END HANDLE UPDATE PROFILE**');
 
-        if (firstName != '' || lastName != '' || userName != '' || bio != '' || profilPicture !='') {
+        if (firstName != '' || lastName != '' || userName != '' || bio != '' || image !='') {
             //gestion des champs
-            //const profilPictureValidation = document.getElementById('profilPicture');
+            //const imageValidation = document.getElementById('image');
             const firstNameValidation = document.getElementById('firstName');
             const lastNameValidation = document.getElementById('lastName');
             const userNameValidation = document.getElementById('userName');
@@ -120,19 +120,19 @@ const UpdateProfil = () => {
                 await axios({
                     method: "patch",
                     url: `${process.env.REACT_APP_API_URL}api/users/` + userId,
-                    headers: { authorization: 'bearer ' + localStorage.getItem('token') },
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
                     data: {
-                        profilPicture,
+                        image,
                         firstName,
                         lastName,
                         userName,
-                        // email,
                         bio
                     },
-                })
-                    .then((res) => {
+                        headers: { authorization: 'bearer ' + localStorage.getItem('token') ,
+                        Accept: 'application/json',
+                        'Content-Type': 'multipart/form-data'
+    
+                    }})
+                 .then((res) => {
                         console.log("res1", res)
 
                         console.log('resdata', res.data)
@@ -153,17 +153,18 @@ const UpdateProfil = () => {
     return (
         <div className='updtate-profil-container'>
             <form action='' onSubmit={handleUpdateProfil} id="update-profil-form">
-                {/*profilPicture*/}
-                <label htmlFor='profilPicture' className='profil-picture-update-label'>Image de Profil</label>
+                {/*image*/}
+                <label htmlFor='image' className='profil-picture-update-label'>Image de Profil</label>
                 <br />
                 <input type='file'
-                    name='profilPicture'
-                    className="update-profilPicture"
-                    id='profilPicture'
+                    name='image'
+                    
+                    id='image'
                     accept='.jpg, .png, .jpeg, .gif'
-                    onChange={(e) => setProfilPicture(e.target.value)}
-                    value={userInfos.profilPicture} />
+                    onChange={(e) => setImage(e.target.files[0])}
+                    />
                 <br />
+
                 {/*firstName*/}
                 <label htmlFor='firstName'>Prénom</label>
                 <br />

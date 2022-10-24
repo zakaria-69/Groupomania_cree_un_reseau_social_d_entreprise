@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react';
 import axios from 'axios';
 
 const ConnectionForm = () => {
-    const [profilPicture, setProfilPicture] = useState('');
+    const [image, setImage] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [userName, setUserName] = useState('');
@@ -135,17 +135,21 @@ const ConnectionForm = () => {
                  
                  else {
             await axios({
-                method: "post",
-                url: `${process.env.REACT_APP_API_URL}api/users/signup`,
-                data: {
-                    profilPicture,
+                method :"post",
+            url:`${process.env.REACT_APP_API_URL}api/users/signup`,
+                 data: {
+                    image,
                     firstName,
                     lastName,
                     userName,
                     email,
                     password
                 },
-            })
+                    headers: { authorization: 'bearer ' + localStorage.getItem('token') ,
+                    Accept: 'application/json',
+                    'Content-Type': 'multipart/form-data'
+
+                }})
                 .then((res) => {
                  console.log("res1", res)
 
@@ -171,15 +175,15 @@ const ConnectionForm = () => {
 
 
         <form action='' onSubmit={handleConnection} id="connection-form">
-            {/*profilPicture*/}
-            <label htmlFor='profilPicture'>Image de Profil</label>
+            {/*image*/}
+            <label htmlFor='image'>Image de Profil</label>
             <br />
             <input type='file'
-                name='profilPicture'
-                id="profilPicture"
+                name='image'
+                id="image"
                 accept='.jpg, .png, .jpeg, .gif'
-                onChange={(e) => setProfilPicture(e.target.value)}
-                value={profilPicture} />
+                onChange={(e) => setImage(e.target.files[0])}
+                 />
             <br />
             {/*firstName*/}
             <label htmlFor='firstName'>Prénom</label>

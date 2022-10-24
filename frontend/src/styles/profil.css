@@ -73,14 +73,14 @@
     
 }
 
-#input-update-profilPicture{
+#image{
     width: 100%;
     border: double #FD2D01 3px;
     background-color: white;
     
 }
 
-.update-profilPicture{
+.update-image{
     width: 100%;
     border: double #FD2D01 3px;
     height: 16rem;

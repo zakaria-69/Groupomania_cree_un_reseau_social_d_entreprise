@@ -62,30 +62,6 @@ const EditPost= () => {
 
    }
 
-    /*useEffect(() => {
-        const createPost = async () => {
-           await axios({
-            method :"post",
-            url:`${process.env.REACT_APP_API_URL}api/posts`,
-                 data: {
-                    image,
-                    title,
-                    text
-                },
-                    headers: { authorization: 'bearer ' + localStorage.getItem('token') },
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-
-                   
-
-                })
-                .then((res) => {
-                    setSendPost(res.data)
-                    console.log('setsendDatas', sendPost)
-                })
-                .catch((err) => console.log(err));
-        }; createPost()
- }, [])*/
 
         return (
             <form action='' onSubmit={handleSubmitPost} id ='post-submit-form' >
