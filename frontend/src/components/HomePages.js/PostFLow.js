@@ -22,34 +22,20 @@ const PostFLow = () => {
                 })
                 .then((res) => {
                     setAllPostsDatas(res.data)
-                    console.log('allPostsData',allPostsDatas)
+                    console.log(allPostsDatas)
                 })
                 .catch((err) => console.log(err));
         };getAllPosts()
     },[PostFLow])
-
-    useEffect(() => {
-    const displayAllCards = async () => {
-        for (let i = 0; i < allPostsDatas.length; i++){ 
-           console.log('allpostsData[i]',allPostsDatas[i])
-           console.log('ok')
-         //  return allPostsDatas[i];
-         // handleCardDisplay();
-         setPostDataI(allPostsDatas[i])
-         console.log('psotDataI ====',postDataI)
-
-
-        }
-    };displayAllCards();
-    },[allPostsDatas])
-
 
     return (
         <div className='posts-flow-subcontainer'>
             <div className='posts-flow-display'>
             <EditPost />
                 <ul>
+                    
                     {allPostsDatas && 
+                    allPostsDatas.reverse() &&
                     allPostsDatas.map((post) =>{
                         console.log('postfrom map : ',post)
                         return <Card post={post} key={post.id}/>
