@@ -4,7 +4,14 @@ import axios from 'axios';
 const CurrentProfil= () => {
     let [userInfos,setUserInfos] = useState('');
     const userId=localStorage.getItem('userId');
-    //console.log(userId)
+    console.log(userInfos)
+
+    let image = (userInfos.profilPicture);
+    console.log('img=====',image)
+
+    if(image === ''){
+        image =('../../img/empty-profil-user.png')
+    }
     
     useEffect(() =>{
     const getUser = async() => {
@@ -30,7 +37,7 @@ const CurrentProfil= () => {
             <div>
                 <div className='update-container'>
                         <h3>Image de profil</h3>
-                        <img id='update-profilPicture' src={userInfos.profilPicture} alt='user-profil-picture' />
+                        <img id='update-profilPicture' src={image} alt='user-profil-picture' />
                         <h4>Prénom</h4>
                         <p >{userInfos.firstName}</p>
                         <h4>Nom</h4>   

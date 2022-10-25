@@ -176,6 +176,13 @@ li.active-btn:active {
 }
 
 
+#update-profilPicture{
+    max-width: 100%;
+    max-height: 16rem;
+    min-height: 16rem;
+    object-fit: contain;
+}
+
 .full-card{
     border: double #FD2D01 3px;
     display: flex;

@@ -56,6 +56,7 @@ textarea{
     border-bottom: double #FD2D01 3px;
     width: 100%;
     padding: 2%;
+    text-decoration: underline #FD2D01 2px;
 }
 
 .post-edit label{
@@ -77,6 +78,7 @@ textarea{
     border: double #FD2D01 3px;
     word-wrap: break-word;
     max-width: 80%;
+    padding: 0.15rem;
 
 }
 
@@ -164,6 +166,7 @@ textarea{
     align-items: center;
     justify-content: center;
     color: #FD2D01;
+    text-decoration: underline #FD2D01 2px;
 
 
 }

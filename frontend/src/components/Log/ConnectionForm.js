@@ -12,6 +12,7 @@ const ConnectionForm = () => {
 
 
 
+
     const handleConnection = async (e) => {
         e.preventDefault();
         //gestion des champs
@@ -131,7 +132,9 @@ const ConnectionForm = () => {
                     fieldError.style.color='red';
                     fieldValidation.style.border='solid red 2px';
                     e.preventDefault();
-                 }//if all ok execute Form treatement
+                 }
+                 
+                 //if all ok execute Form treatement
                  
                  else {
             await axios({
@@ -145,15 +148,13 @@ const ConnectionForm = () => {
                     email,
                     password
                 },
-                    headers: { authorization: 'bearer ' + localStorage.getItem('token') ,
-                    Accept: 'application/json',
+                    headers: { Accept: 'application/json',
                     'Content-Type': 'multipart/form-data'
 
                 }})
                 .then((res) => {
                  console.log("res1", res)
-
-                    console.log(res.data.errors)
+                 console.log(res.data.errors)
                     alert('Felicitations ! Vôtre compte à été crée avec succès  👍' )
                     window.location = '/login';
 
@@ -162,7 +163,10 @@ const ConnectionForm = () => {
     })
                 .catch((res) =>{
                     console.log(res)
-                //fieldError.innerHTML=res.response.data.error.errors[0].message           
+                //fieldError.innerHTML=res.response.data.error.errors[0].message
+                emailValidation.style.border='solid red 2px';
+                emailError.innerHTML=res.response.data.error.errors[0].message;
+                emailError.style.color='red';           
 
 
                 } )
