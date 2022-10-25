@@ -84,12 +84,16 @@ const handleDeleteUser = () => {
                    <p id='to-user-delete-message'>Nous Sommes désolé de vous voir nous quitter.Nous ésperons que vous ayez pu profiter d'une éxperience de qualitée sur nôtre plateforme 🤝</p>
                     <br />
                     <div className='submit-delete-account'>
-                    <h5 className='warning-delete-account'>Attention⚠!Un clic sur le bouton supprimer entrainera une perte définitive de vôtre compte et de tout ce qu'il contient de façon irreversible !  </h5>
+                    <h5 className='warning-delete-account'>Attention⚠!supprimer vôtre compte entrainera une perte définitive de celui-ci et de tout ce qu'il contient de façon irreversible !  </h5>
                         <button type='submit'
-                        onClick={handleDeleteUser}
                         id='delete-profil-validation'
                             name="delete-profil-validation"
-                            className='delete-profil-validation'>Supprimer
+                            className='delete-profil-validation'
+                            onClick={() =>{
+                                if(window.confirm('voulez vous vraiment supprimer vôtre compte?'))
+                               {handleDeleteUser();
+                            }
+                            }}>Supprimer
                         </button>
                        
                         

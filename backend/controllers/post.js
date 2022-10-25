@@ -88,7 +88,7 @@ exports.deleteOnePost = (req, res, next) => {
                             {
                                 console.log("post.UserId 1", post.UserId)
                                 console.log("req.auth.userId 1", req.auth.userId)
-                                res.status(401).json({ message: 'not authorized' });
+                                res.status(401).json({ message: `vous n'êtes pas autorisé a supprimé ce message` });
                             }
                         } else {
                             const filename = post.imageUrl.split("/images/")[1];

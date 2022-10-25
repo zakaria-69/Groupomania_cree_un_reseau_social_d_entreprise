@@ -198,11 +198,27 @@ textarea{
 
 /*Gestion footer Card*/
 .footer-card{
-    padding: 2% 1%;
+    padding: 2% 0;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background-color: #FFD7D7;
     border-top: double #FD2D01 3px;
+}
+
+.footer-card ul{
+    display: flex;
+    width: 100%;
+   border-bottom: double #FD2D01 3px;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.footer-card li{
+    display: flex;
+    justify-content: space-between;
+    margin: 2%;
 }
 
 .footer-card span{
@@ -226,6 +242,10 @@ textarea{
 .footer-card button{
     width: 1.5rem;
     height:1.5rem;
+}
+
+.comments{
+    border: solid yellow 3px;
 }
 
 /*.home-page-container{
