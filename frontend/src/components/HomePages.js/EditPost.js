@@ -58,7 +58,8 @@ const EditPost= () => {
                     alert('Post crée avec succès');
                     
                 })
-                .catch((err) => console.log(err));
+                .catch((err) =>alert( console.log(err)));
+                alert("err")
     }
 
    }

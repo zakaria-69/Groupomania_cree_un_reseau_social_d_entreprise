@@ -11,15 +11,17 @@ const Card = (data) => {
     let [updatedAt,setUpdatedAt] = useState('');
     let [uid,setUid] = useState('');
     let [postId,setPostId] = useState('');
-    let [imageUrl,setImageUrl] = useState('');
+    let [image,setImage] = useState('');
     let [postLikeNumber,setPostLikeNumber] = useState('');
-    let [postContentText,setPostContentText] = useState('');
-    let [postTitle,setPostTitle] = useState('');
+    let [text,setText] = useState('');
+    let [title,setTitle] = useState('');
+    const [isUpdated,setIsUpdated] = useState(false)
 
     const userId = localStorage.getItem('userId')
  
     const post = data.post;
-   // console.log(post)
+    //console.log(post)
+    
    // JSON.parse(post)
     //console.log('jsonPaarse ==',JSON.parse(post))
     //setMyPost(post);
@@ -97,18 +99,19 @@ const Card = (data) => {
         };
     }
 
-
+//fonction de modification de post 
     const handleUpdateOnePost = () => {
        // JSON.stringify(userId)
        if(userId == post.UserId){  
             const updateOnePost = async () => {
+
                 await axios({
                 method : 'patch',
                 url : `${process.env.REACT_APP_API_URL}api/users/` + post.id,
                 data: {
-                    postTitle,
-                    imageUrl,
-                    postContentText
+                    image,
+                    title,
+                    text
                 },
                       headers: { authorization: 'bearer ' + localStorage.getItem('token'),
                         Accept: 'application/json',
@@ -118,8 +121,9 @@ const Card = (data) => {
                  .then((res) => {
                     setAllPostsDatas(res.data)
                     alert('vôtre post a été correctement modifié')
+                    setIsUpdated(false)
                    // window.location.reload();
-                     console.log('AllPostsDatas from patch post', allPostsDatas)
+                     console.log('AllPostsDatas from patch post', res)
                     })
                     .catch((err) => {console.log(err)
                         alert("Désolé!Vous n'êtes pas autorisé à modifié ce post!")
@@ -132,9 +136,9 @@ const Card = (data) => {
 }
                           /* await axios.patch(`${process.env.REACT_APP_API_URL}api/posts/` + post.id,
                             data : {
-                                    postTitle,
-                                    imageUrl,
-                                    postContentText
+                                    title,
+                                    image,
+                                    text
                                 },
                                     headers: { authorization: 'bearer ' + localStorage.getItem('token'),
                                     Accept: 'application/json',
@@ -177,14 +181,14 @@ const Card = (data) => {
        //  console.log('uid',uid);
         setPostId(post.id);
        //  console.log('postId',postId);
-        setImageUrl(post.imageUrl);
-       //  console.log('imageUrl',imageUrl);
+        setImage(post.imageUrl);
+        // console.log('image',image);
         setPostLikeNumber(post.like);
        //  console.log('postLikeNumber',postLikeNumber);
-        setPostContentText(post.text);
-       //  console.log('postContentText',postContentText)
-       setPostTitle(post.title);
-       //  console.log('postTitle',postTitle);
+        setText(post.text);
+       //  console.log('text',text)
+       setTitle(post.title);
+         console.log('title',title);
   
     };return  handleCardDisplay();
 },[userInfos])
@@ -208,6 +212,7 @@ const timeStampHandler = (num) =>{
 }
 
 return (
+    
     <div className='card'>
         <div className='header-card'>
             <h3 className="userName-card" >
@@ -219,26 +224,73 @@ return (
             </div>
         </div>
         <div className='post-title'>
-            <h3>{postTitle}</h3>
+         {isUpdated === false &&  <h3>{title}</h3>}
+         {isUpdated && (
+            <div className='post-title'>
+                <input 
+                defaultValue={title}
+                onChange={(e) => setTitle(e.target.value)}/>
+                <div className='title-edit'>
+                    <button className='title-btn-edit' onClick={handleUpdateOnePost}>Validez modifications
+                    </button>
+                </div>
+            </div>
+            
+
+         )}
         </div>
-        <div class="textContent-card">{postContentText}</div>
-        <div className='body-card'>
-            <img src={imageUrl} alt='post-picture' className='post-imageUrl'></img>
-        </div>
-        <nav className='footer-card'>
-            <ul>
-            <li><button title='like'><i class="fa-regular fa-heart"><span id={postLikeNumber ? 'post-like-number' : null }>{postLikeNumber}</span></i></button></li>
-            <li><button title='delete'  onClick={() =>{
-                                if(window.confirm('voulez vous vraiment supprimer vôtre publication?'))
-                               {handleDeletePost();}
-                            }}><i class="fa-regular fa-trash-can"></i></button></li>
-                             <li><button title='update' onClick={handleUpdateOnePost}><i class="fa-regular fa-pen-to-square"></i></button></li>
-            </ul>
-        </nav>
+        <div class="textContent-card">{text}</div>
+        {image ? (<div className='body-card'>
+            <img src={image} alt='post-picture' className='post-imageUrl'></img>
+        </div>) : (
+            <div className='body-card' style={{display:'none'}}></div>
+          // <nav className='footer-card' style={{display:'none'}}></nav>
+        
+
+
+        )}
+        {image ? ( <nav className='footer-card'>
+            {userId == post.UserId ? (
+                <ul>
+                    <li><button title='delete' onClick={() => {
+                        if (window.confirm('voulez vous vraiment supprimer vôtre publication?')) { handleDeletePost(); }
+                    }}><i class="fa-regular fa-trash-can"></i></button></li>
+                    <li><button title='update' onClick={() => setIsUpdated(!isUpdated)}><i class="fa-regular fa-pen-to-square"></i></button></li>
+                    <li id='like-item'><button title='like'><i class="fa-regular fa-heart"><span id={postLikeNumber ? 'post-like-number' : null}>{postLikeNumber}</span></i></button></li>
+                </ul>
+            ) : (
+                     <ul>
+                    <li id='like-item'><button title='like'><i class="fa-regular fa-heart"><span id={postLikeNumber ? 'post-like-number' : null}>{postLikeNumber}</span></i></button></li>
+                    </ul>
+    
+            )}
+            
+        </nav>) : (
+             <nav className='footer-card' style={{borderTop:'none'}}>
+             {userId == post.UserId ? (
+                 <ul>
+                     <li><button title='delete' onClick={() => {
+                         if (window.confirm('voulez vous vraiment supprimer vôtre publication?')) { handleDeletePost(); }
+                     }}><i class="fa-regular fa-trash-can"></i></button></li>
+                     <li><button title='update' onClick={() => setIsUpdated(!isUpdated)}><i class="fa-regular fa-pen-to-square"></i></button></li>
+                     <li id='like-item'><button title='like'><i class="fa-regular fa-heart"><span id={postLikeNumber ? 'post-like-number' : null}>{postLikeNumber}</span></i></button></li>
+                 </ul>
+             ) : (
+                
+                <ul>
+                <li id='like-item'><button title='like'><i class="fa-regular fa-heart"><span id={postLikeNumber ? 'post-like-number' : null}>{postLikeNumber}</span></i></button></li>
+                </ul>
+             )}
+             
+         </nav>
+
+
+        )}
+
         <div className='comments'>
-        commentaires
-        <span><button title='comment'><i class="fa-regular fa-comment"></i></button></span>
-                     
+            commentaires
+            <span><button title='comment'><i class="fa-regular fa-comment"></i></button></span>
+
         </div>
     </div>
 );

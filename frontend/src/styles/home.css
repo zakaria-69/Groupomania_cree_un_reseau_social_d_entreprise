@@ -205,12 +205,12 @@ textarea{
     align-items: center;
     background-color: #FFD7D7;
     border-top: double #FD2D01 3px;
+    border-bottom: double #FD2D01 3px;
 }
 
 .footer-card ul{
     display: flex;
     width: 100%;
-   border-bottom: double #FD2D01 3px;
     flex-direction: row;
     justify-content: flex-end;
 }
@@ -243,6 +243,7 @@ textarea{
     width: 1.5rem;
     height:1.5rem;
 }
+
 
 .comments{
     border: solid yellow 3px;

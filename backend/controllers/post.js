@@ -19,7 +19,7 @@ exports.createPost = (req, res, next) => {
         UserId: req.auth.userId,
 
         //cannot read properties of undefined readin filename
-        imageUrl:  /*req.file !== undefined ?*/`${req.protocol}://${req.get('host')}/images/${req.file.filename}` //: ""
+        imageUrl:  req.file !== undefined ?`${req.protocol}://${req.get('host')}/images/${req.file.filename}` : ""
     });
     post.save()
         .then(() => { res.status(201).json({ message: 'Post crée avec succès !' }) })
@@ -44,7 +44,7 @@ exports.displayOnePost = (req, res, next) => {
 exports.udpateOnePost = (req, res, next) => {
     const postObject = req.file ? {
         ...req.body,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl:  req.file !== undefined ?`${req.protocol}://${req.get('host')}/images/${req.file.filename}` : ""
     } : { ...req.body };
     Post.findOne({ where: { id: req.params.id } })
         .then((post) => {
