@@ -55,7 +55,7 @@ const EditPost= () => {
 
                 }})
                 .then((res) => {
-                    alert('Post crée avec succès')
+                    alert('Post crée avec succès');
                     
                 })
                 .catch((err) => console.log(err));

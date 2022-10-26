@@ -37,7 +37,7 @@ const PostFLow = () => {
                     {allPostsDatas && 
                     allPostsDatas.reverse() &&
                     allPostsDatas.map((post) =>{
-                        console.log('postfrom map : ',post)
+                        //console.log('postfrom map : ',post)
                         return <Card post={post} key={post.id}/>
                     })
                     }

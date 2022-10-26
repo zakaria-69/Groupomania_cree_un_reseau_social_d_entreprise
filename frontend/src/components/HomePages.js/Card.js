@@ -15,8 +15,11 @@ const Card = (data) => {
     let [postLikeNumber,setPostLikeNumber] = useState('');
     let [postContentText,setPostContentText] = useState('');
     let [postTitle,setPostTitle] = useState('');
+
+    const userId = localStorage.getItem('userId')
  
     const post = data.post;
+   // console.log(post)
    // JSON.parse(post)
     //console.log('jsonPaarse ==',JSON.parse(post))
     //setMyPost(post);
@@ -34,7 +37,7 @@ const Card = (data) => {
                 })
                 .then((res) => {
                     setUserInfos(res.data)
-                    console.log('userInfos', userInfos);
+                  // console.log('userInfos', userInfos);
                 })
                 .catch((err) => console.log(err));
 
@@ -65,7 +68,7 @@ const Card = (data) => {
 
     //fonction de suppression de post 
         const handleDeletePost= () =>{
-            if(userInfos.id === post.UserId){   
+           if(userId == post.UserId){  
         const deleteOnePost = async () => {
                        await axios.delete(`${process.env.REACT_APP_API_URL}api/posts/` + post.id,
                             {
@@ -75,22 +78,87 @@ const Card = (data) => {
             
                             })
                             .then((res) => {
-                                setAllPostsDatas(res.data)
+                               // setAllPostsDatas(res.data)
                                 alert('vôtre post a été correctement supprimé')
                                 window.location.reload();
-                                alert(res.response.data.message)
+                                //alert(res.response.data.message)
                                  //console.log('AllPostsDatas', allPostsDatas)
                             })
                            // console.log(res.response.data.message)
-                            .catch((err) => alert(`Désolé!vous n'êtes pas autorisé a supprimé ce message!`));
+                            .catch((err) =>{console.log(err)
+                             alert(`Désolé!vous n'êtes pas autorisé a supprimé ce message!`)});
 
                             
                     }; deleteOnePost()
-                }else{
-                    alert(`vous n'êtes pas autorisé a supprimé ce message`)
-                }
            
+        }else{
+            alert(`Désolé!vous n'êtes pas autorisé a supprimé ce message!`)
+
         };
+    }
+
+
+    const handleUpdateOnePost = () => {
+       // JSON.stringify(userId)
+       if(userId == post.UserId){  
+            const updateOnePost = async () => {
+                await axios({
+                method : 'patch',
+                url : `${process.env.REACT_APP_API_URL}api/users/` + post.id,
+                data: {
+                    postTitle,
+                    imageUrl,
+                    postContentText
+                },
+                      headers: { authorization: 'bearer ' + localStorage.getItem('token'),
+                        Accept: 'application/json',
+                        'Content-Type': 'multipart/form-data',
+                        
+                    }})
+                 .then((res) => {
+                    setAllPostsDatas(res.data)
+                    alert('vôtre post a été correctement modifié')
+                   // window.location.reload();
+                     console.log('AllPostsDatas from patch post', allPostsDatas)
+                    })
+                    .catch((err) => {console.log(err)
+                        alert("Désolé!Vous n'êtes pas autorisé à modifié ce post!")
+                      
+                    })
+            };updateOnePost();
+    }else{
+        alert("Désolé!Vous n'êtes pas autorisé à modifié ce post!")
+    }
+}
+                          /* await axios.patch(`${process.env.REACT_APP_API_URL}api/posts/` + post.id,
+                            data : {
+                                    postTitle,
+                                    imageUrl,
+                                    postContentText
+                                },
+                                    headers: { authorization: 'bearer ' + localStorage.getItem('token'),
+                                    Accept: 'application/json',
+                                    'Content-Type': 'multipart/form-data'
+                
+                                })
+                                .then((res) => {
+                                    setAllPostsDatas(res.data)
+                                    alert('vôtre post a été correctement modifié')
+                                   // window.location.reload();
+                                    alert(res.response.data.message)
+                                     console.log('AllPostsDatas from patch post', allPostsDatas)
+                                }).catch((err) => console.log(err))
+                                //alert(`Désolé!vous n'êtes pas autorisé a modifié ce message!`));
+    
+                                
+                        }; updateOnePost()
+                    }else{
+                       // alert(`vous n'êtes pas autorisé a supprimé ce message`)
+                        console.log('dans le else')
+                    }
+               
+            };*/
+    
 
 
 
@@ -164,7 +232,7 @@ return (
                                 if(window.confirm('voulez vous vraiment supprimer vôtre publication?'))
                                {handleDeletePost();}
                             }}><i class="fa-regular fa-trash-can"></i></button></li>
-            <li><button title='update'><i class="fa-regular fa-pen-to-square"></i></button></li>
+                             <li><button title='update' onClick={handleUpdateOnePost}><i class="fa-regular fa-pen-to-square"></i></button></li>
             </ul>
         </nav>
         <div className='comments'>
