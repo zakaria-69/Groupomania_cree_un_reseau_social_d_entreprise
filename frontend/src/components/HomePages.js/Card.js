@@ -21,6 +21,7 @@ const Card = (data) => {
  
     const post = data.post;
 
+    
 
     //get user pour recuperer les data du user connecter
 
@@ -217,9 +218,11 @@ return (
             defaultValue={text}
             onChange={(e) =>setText(e.target.value)}></textarea>
         </div>}
-        {isUpdated === false && <div className='body-card'>
-        <img src={image} alt='post-picture' className='post-imageUrl'></img>
-        </div>}
+            {isUpdated === false && image ? (<div className='body-card' id='test2'>
+            <img src={image} alt='post-picture' className='post-imageUrl'></img>
+        </div>) : (<div className='body-card' style={{display:'none'}}></div>)}
+        
+        
         {isUpdated && 
         <div >
             <label htmlFor='image-update' className='image-update'>modification de l'image</label>
