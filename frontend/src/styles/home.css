@@ -229,15 +229,17 @@ textarea{
 }
 
 #post-like-number{
-    width: 1rem;
-    height: 1rem;
-    position: absolute;
+    width: 1.2rem;
+    height: 1.2rem;
     transform: translate(-30%,50%);
     color: #FFD7D7;
     font-weight: 900;
     border-radius: 50%;
     border: solid #FD2D01 1px;
     background-color: #4E5166;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-card button{
@@ -342,3 +344,15 @@ textarea{
     margin: 2% auto;
     padding: 0.5rem;
 }
+
+.footer-update{
+    display: flex;
+    border: solid red 2px;
+}
+
+.cancel-image{
+    border: solid green 2px;
+}
+
+
+

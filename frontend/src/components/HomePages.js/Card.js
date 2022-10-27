@@ -16,6 +16,7 @@ const Card = (data) => {
     let [text,setText] = useState('');
     let [title,setTitle] = useState('');
     const [isUpdated,setIsUpdated] = useState(false)
+    const [isLiked,setIsLiked] = useState(false);
 
     const userId = localStorage.getItem('userId')
  
@@ -142,7 +143,56 @@ const Card = (data) => {
         alert("Désolé!Vous n'êtes pas autorisé à modifié ce post!")
     }
 }  
+
+const handleDeletePostPicture =() => {
+    if(userId == post.UserId && image){  
+        const deleteOnePostPicture = async () => {
+                       await axios.delete(`${process.env.REACT_APP_API_URL}api/posts/`+ post.id +`/image`,
+                            {
+                                headers: { authorization: 'bearer ' + localStorage.getItem('token') ,
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json',           
+                            }})
+                            .then((res) => {
+                                alert('vôtre image a été correctement supprimé')
+                                window.location='./'
+                            })
+                            .catch((err) =>{console.log(err)
+                             alert(`Désolé!vous n'êtes pas autorisé a supprimé cette image!`)});
+
+                            
+                    }; deleteOnePostPicture()
+           
+        }else{
+            alert(`Aucune image à supprimer`)
+
+        };
+
+
+}
+
+
+//recuperer les posts likes
+    const handleLikePost = async () => {
+        console.log(postLikeNumber)
+await axios.get(`${process.env.REACT_APP_API_URL}api/posts/`+ post.id/'like',
+                   {
+                headers: { authorization: 'bearer ' + localStorage.getItem('token') },
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+
+            })
+            .then((res) => {
+                setPostLikeNumber(res.data)
+                //console.log('AllPostsDatas', allPostsDatas)
+            })
+            .catch((err) => console.log(err));
+    }; handleLikePost()
+
     
+
+
+
 //fonction pour attribuer les data d'un post a des variables ou verifier si des posts existe
     useEffect(() => {
     const handleCardDisplay = () => {
@@ -226,6 +276,7 @@ return (
         {isUpdated && 
         <div >
             <label htmlFor='image-update' className='image-update'>modification de l'image</label>
+
             <input type='file'
         name='image-update'
         className='image-pic'
@@ -233,10 +284,13 @@ return (
         accept='.jpg, .png, .jpeg, .gif'
         onChange={(e) => setImage(e.target.files[0])}
         ></input>
+         <buton title='delete-image' onClick={handleDeletePostPicture}><i class="fa-solid fa-xmark fa-lg"></i></buton>
         <div className='body-card'>
             <img src={image} alt='post-picture' className='post-imageUrl'></img>
+            
         </div>
         </div>
+        
         }
     
         {/*image ? (<div className='body-card'>
@@ -255,7 +309,9 @@ return (
         value='mettre à jour la publication'
          className='update-profil-submit'
           onClick={handleUpdateOnePost} 
-          style={{display:'flex'}}></input>}
+          style={{display:'flex'}}></input>
+          }
+         
     </form>
         {image ? (<nav className='footer-card'>
             {userId == post.UserId ? (
@@ -306,7 +362,7 @@ return (
                             </button>
                         </li>
                         <li id='like-item'>
-                            <button title='like'>
+                            <button title='like' onClick={handleLikePost}>
                                 <i class="fa-regular fa-heart">
                                     <span id={postLikeNumber ? 'post-like-number' : null}>
                                         {postLikeNumber}
@@ -319,7 +375,7 @@ return (
 
                     <ul>
                         <li id='like-item'>
-                            <button title='like'>
+                            <button title='like' onClick={handleLikePost}>
                                 <i class="fa-regular fa-heart">
                                     <span id={postLikeNumber ? 'post-like-number' : null}>
                                         {postLikeNumber}
