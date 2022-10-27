@@ -141,7 +141,7 @@ textarea{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     padding: 2%;
     background-color: white;
@@ -175,6 +175,7 @@ textarea{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     padding: 2%;
     border-bottom: double #FD2D01 3px;
 
@@ -277,3 +278,67 @@ textarea{
     align-items: center;
     
 }*/
+
+
+.title-btn-edit-container{
+    border:double #FD2D01 3px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1%;
+}
+
+
+.title-btn-edit-subcontainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.title-btn-edit{
+    margin: 2% auto;
+    padding: 1%;
+    border-radius: 8%;
+    box-shadow: 2px 2px 1px rgb(51 51 51 / 42%);
+    font-size: small;
+    font-weight: bold;
+    color: #FD2D01;
+    border: double #FD2D01 3px;
+    cursor: pointer;
+}
+
+.image-update{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+    border-bottom: double #FD2D01 3px;
+}
+
+.title-update,.text-update,.image-update{
+    color:#FD2D01;
+    padding: 2%;
+    border-bottom: double #FD2D01 3px;
+
+}
+
+#title-field-edit{
+    display: flex;
+    align-items: center;
+    margin: 2% auto;
+    width: 80%;
+    padding: 2%;
+    border: double #FD2D01 3px;
+    word-wrap: break-word;
+    max-width: 80%;
+    padding: 0.15rem;
+}
+
+#text-update{
+    max-width: 20rem;
+    min-width: 15rem;
+    max-height: 10rem;
+    min-height: 2rem;
+    margin: 2% auto;
+    padding: 0.5rem;
+}

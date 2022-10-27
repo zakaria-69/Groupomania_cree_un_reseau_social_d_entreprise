@@ -20,11 +20,7 @@ const Card = (data) => {
     const userId = localStorage.getItem('userId')
  
     const post = data.post;
-    //console.log(post)
-    
-   // JSON.parse(post)
-    //console.log('jsonPaarse ==',JSON.parse(post))
-    //setMyPost(post);
+
 
     //get user pour recuperer les data du user connecter
 
@@ -101,13 +97,22 @@ const Card = (data) => {
 
 //fonction de modification de post 
     const handleUpdateOnePost = () => {
-       // JSON.stringify(userId)
        if(userId == post.UserId){  
             const updateOnePost = async () => {
-
-                await axios({
+                if(title || text || image ){
+                    console.log('**START HANDLE UPDATE POST**');
+                    console.log('title :', title);
+                    console.log('post title :', post.title);
+                    console.log('image :', image);
+                    console.log('post image :' , post.imageUrl);
+                    console.log(' text :'  , text);
+                    // console.log('lastName :' + lastName);
+                    // console.log('userName :' + userName);
+                    // console.log('bio :' + bio);
+                    console.log('**END HANDLE UPDATE POST**');
+            await axios({
                 method : 'patch',
-                url : `${process.env.REACT_APP_API_URL}api/users/` + post.id,
+                url : `${process.env.REACT_APP_API_URL}api/posts/` + post.id,
                 data: {
                     image,
                     title,
@@ -116,9 +121,9 @@ const Card = (data) => {
                       headers: { authorization: 'bearer ' + localStorage.getItem('token'),
                         Accept: 'application/json',
                         'Content-Type': 'multipart/form-data',
-                        
                     }})
                  .then((res) => {
+                    console.log('title 4',title)
                     setAllPostsDatas(res.data)
                     alert('vôtre post a été correctement modifié')
                     setIsUpdated(false)
@@ -127,47 +132,15 @@ const Card = (data) => {
                     })
                     .catch((err) => {console.log(err)
                         alert("Désolé!Vous n'êtes pas autorisé à modifié ce post!")
-                      
-                    })
-            };updateOnePost();
-    }else{
+                  })
+                     }else{
+                alert('rien à modifié')
+            }
+    };updateOnePost();
+}else{
         alert("Désolé!Vous n'êtes pas autorisé à modifié ce post!")
     }
-}
-                          /* await axios.patch(`${process.env.REACT_APP_API_URL}api/posts/` + post.id,
-                            data : {
-                                    title,
-                                    image,
-                                    text
-                                },
-                                    headers: { authorization: 'bearer ' + localStorage.getItem('token'),
-                                    Accept: 'application/json',
-                                    'Content-Type': 'multipart/form-data'
-                
-                                })
-                                .then((res) => {
-                                    setAllPostsDatas(res.data)
-                                    alert('vôtre post a été correctement modifié')
-                                   // window.location.reload();
-                                    alert(res.response.data.message)
-                                     console.log('AllPostsDatas from patch post', allPostsDatas)
-                                }).catch((err) => console.log(err))
-                                //alert(`Désolé!vous n'êtes pas autorisé a modifié ce message!`));
-    
-                                
-                        }; updateOnePost()
-                    }else{
-                       // alert(`vous n'êtes pas autorisé a supprimé ce message`)
-                        console.log('dans le else')
-                    }
-               
-            };*/
-    
-
-
-
-
-    
+}  
     
 //fonction pour attribuer les data d'un post a des variables ou verifier si des posts existe
     useEffect(() => {
@@ -188,7 +161,7 @@ const Card = (data) => {
         setText(post.text);
        //  console.log('text',text)
        setTitle(post.title);
-         console.log('title',title);
+       //  console.log('title',title);
   
     };return  handleCardDisplay();
 },[userInfos])
@@ -206,14 +179,11 @@ const timeStampHandler = (num) =>{
         };
         let timeStamp = Date.parse(num);
         let date = new Date(timeStamp).toLocaleDateString('fr-FR',options)
-
         return date.toString();
-
 }
 
 return (
-    
-    <div className='card'>
+        <div className='card'>
         <div className='header-card'>
             <h3 className="userName-card" >
                 {userInfos.firstName} {userInfos.lastName}
@@ -223,40 +193,92 @@ return (
                 <span className='udpated-date'>{timeStampHandler(updatedAt)}</span>
             </div>
         </div>
+        <form action='' className='form-update' onSubmit={handleUpdateOnePost}>
         <div className='post-title'>
          {isUpdated === false &&  <h3>{title}</h3>}
          {isUpdated && (
-            <div className='post-title'>
+             <div className='post-title'>
+                 <label htmlFor='title-field-edit' className='title-update'>modification du titre</label> 
                 <input 
+                type='text'
+                id='title-field-edit'
                 defaultValue={title}
                 onChange={(e) => setTitle(e.target.value)}/>
-                <div className='title-edit'>
-                    <button className='title-btn-edit' onClick={handleUpdateOnePost}>Validez modifications
-                    </button>
                 </div>
-            </div>
-            
-
          )}
+         </div>
+         
+         {isUpdated === false && <div class="textContent-card" >{text}</div> }
+       {isUpdated && <div class="textContent-card" >
+       <label htmlFor='text-update' className='text-update'>modification du text</label>
+            <textarea type='text'
+            name='text-update'
+            id='text-update'
+            defaultValue={text}
+            onChange={(e) =>setText(e.target.value)}></textarea>
+        </div>}
+        {isUpdated === false && <div className='body-card'>
+        <img src={image} alt='post-picture' className='post-imageUrl'></img>
+        </div>}
+        {isUpdated && 
+        <div >
+            <label htmlFor='image-update' className='image-update'>modification de l'image</label>
+            <input type='file'
+        name='image-update'
+        className='image-pic'
+        id='image-update'
+        accept='.jpg, .png, .jpeg, .gif'
+        onChange={(e) => setImage(e.target.files[0])}
+        ></input>
+        <div className='body-card'>
+            <img src={image} alt='post-picture' className='post-imageUrl'></img>
         </div>
-        <div class="textContent-card">{text}</div>
-        {image ? (<div className='body-card'>
+        </div>
+        }
+    
+        {/*image ? (<div className='body-card'>
             <img src={image} alt='post-picture' className='post-imageUrl'></img>
         </div>) : (
             <div className='body-card' style={{display:'none'}}></div>
-          // <nav className='footer-card' style={{display:'none'}}></nav>
-        
-
-
-        )}
-        {image ? ( <nav className='footer-card'>
+        )*/}
+         {isUpdated === false && 
+         <input type="submit"
+          value='mettre à jour la publication'
+           className='update-profil-submit'
+            style={{display:'none'}} />
+            }
+       {isUpdated && 
+       <input type="submit"
+        value='mettre à jour la publication'
+         className='update-profil-submit'
+          onClick={handleUpdateOnePost} 
+          style={{display:'flex'}}></input>}
+    </form>
+        {image ? (<nav className='footer-card'>
             {userId == post.UserId ? (
                 <ul>
                     <li><button title='delete' onClick={() => {
-                        if (window.confirm('voulez vous vraiment supprimer vôtre publication?')) { handleDeletePost(); }
-                    }}><i class="fa-regular fa-trash-can"></i></button></li>
-                    <li><button title='update' onClick={() => setIsUpdated(!isUpdated)}><i class="fa-regular fa-pen-to-square"></i></button></li>
-                    <li id='like-item'><button title='like'><i class="fa-regular fa-heart"><span id={postLikeNumber ? 'post-like-number' : null}>{postLikeNumber}</span></i></button></li>
+                        if (window.confirm('voulez vous vraiment supprimer vôtre publication?'))
+                         { handleDeletePost()}
+                    }}>
+                        <i class="fa-regular fa-trash-can">
+                        </i>
+                    </button>
+                    </li>
+                    <li>
+                        <button title='update' onClick={() =>setIsUpdated(!isUpdated)}>
+                            <i class="fa-regular fa-pen-to-square">
+                            </i>
+                        </button>
+                    </li>
+                    <li id='like-item'><button title='like'>
+                        <i class="fa-regular fa-heart">
+                            <span id={postLikeNumber ? 'post-like-number' : null}>
+                                {postLikeNumber}
+                            </span>
+                        </i>
+                    </button>
+                    </li>
                 </ul>
             ) : (
                      <ul>
@@ -266,31 +288,49 @@ return (
             )}
             
         </nav>) : (
-             <nav className='footer-card' style={{borderTop:'none'}}>
-             {userId == post.UserId ? (
-                 <ul>
-                     <li><button title='delete' onClick={() => {
-                         if (window.confirm('voulez vous vraiment supprimer vôtre publication?')) { handleDeletePost(); }
-                     }}><i class="fa-regular fa-trash-can"></i></button></li>
-                     <li><button title='update' onClick={() => setIsUpdated(!isUpdated)}><i class="fa-regular fa-pen-to-square"></i></button></li>
-                     <li id='like-item'><button title='like'><i class="fa-regular fa-heart"><span id={postLikeNumber ? 'post-like-number' : null}>{postLikeNumber}</span></i></button></li>
-                 </ul>
-             ) : (
-                
-                <ul>
-                <li id='like-item'><button title='like'><i class="fa-regular fa-heart"><span id={postLikeNumber ? 'post-like-number' : null}>{postLikeNumber}</span></i></button></li>
-                </ul>
-             )}
-             
-         </nav>
+            <nav className='footer-card' style={{ borderTop: 'none' }}>
+                {userId == post.UserId ? (
+                    <ul>
+                        <li><button title='delete' onClick={() => {
+                            if (window.confirm('voulez vous vraiment supprimer vôtre publication?')) { handleDeletePost(); }
+                        }}><i class="fa-regular fa-trash-can"></i>
+                        </button>
+                        </li>
+                        <li>
+                            <button title='update'
+                                onClick={() => setIsUpdated(!isUpdated)}>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                        </li>
+                        <li id='like-item'>
+                            <button title='like'>
+                                <i class="fa-regular fa-heart">
+                                    <span id={postLikeNumber ? 'post-like-number' : null}>
+                                        {postLikeNumber}
+                                    </span>
+                                </i>
+                            </button>
+                        </li>
+                    </ul>
+                ) : (
 
-
+                    <ul>
+                        <li id='like-item'>
+                            <button title='like'>
+                                <i class="fa-regular fa-heart">
+                                    <span id={postLikeNumber ? 'post-like-number' : null}>
+                                        {postLikeNumber}
+                                    </span>
+                                </i>
+                            </button>
+                        </li>
+                    </ul>
+                )}
+              </nav>
         )}
-
         <div className='comments'>
             commentaires
             <span><button title='comment'><i class="fa-regular fa-comment"></i></button></span>
-
         </div>
     </div>
 );
