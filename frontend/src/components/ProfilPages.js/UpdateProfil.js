@@ -150,6 +150,8 @@ const UpdateProfil = () => {
         }
 
     }
+
+ 
     return (
         <div className='updtate-profil-container'>
             <form action='' onSubmit={handleUpdateProfil} id="update-profil-form">
@@ -157,8 +159,7 @@ const UpdateProfil = () => {
                 <label htmlFor='image' className='profil-picture-update-label'>Image de Profil</label>
                 <br />
                 <input type='file'
-                    name='image'
-                    
+                    name='image'         
                     id='image'
                     accept='.jpg, .png, .jpeg, .gif'
                     onChange={(e) => setImage(e.target.files[0])}
