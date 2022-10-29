@@ -346,7 +346,7 @@ return (
     </form>
         {image ? (
         <nav className='footer-card'>
-            {userId == post.UserId || userInfos.isAdmin ? (
+            {userInfos.id === post.UserId || userInfos.isAdmin ? (
                 <ul>
                     <li><button title='delete' onClick={() => {
                         if (window.confirm('voulez vous vraiment supprimer vôtre publication?'))
@@ -378,7 +378,7 @@ return (
                )}
         </nav>) : (
             <nav className='footer-card' style={{ borderTop: 'none' }}>
-                {userId == post.UserId || userInfos.isAdmin ? (
+                {userInfos.id === post.UserId || userInfos.isAdmin ? (
                     <ul>
                         <li><button title='delete' onClick={() => {
                             if (window.confirm('voulez vous vraiment supprimer vôtre publication?')) { handleDeletePost(); }
