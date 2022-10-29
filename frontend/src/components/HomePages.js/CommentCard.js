@@ -147,7 +147,12 @@ const handleSubmitComment = async (userInfos) => {
  //fonction de suppression de post 
  const handleDeleteComment= () =>{
     console.log('const2userid',userId)
-    if(userId == comment.UserId){  
+    console.log('userId from delete comment',userId)
+        console.log('comment UserId from delete comment',comment.UserId)
+        console.log('isAdmin',userInfos.isAdmin)
+    if(userId === comment.UserId || userInfos.isAdmin ){
+        
+
  const deleteOneComment = async () => {
                 await axios.delete(`${process.env.REACT_APP_API_URL}api/comments/` + comment.id,
                      {
@@ -160,15 +165,16 @@ const handleSubmitComment = async (userInfos) => {
                         // setAllPostsDatas(res.data)
                          alert('vôtre post a été correctement supprimé')
                          window.location.reload();
+                         console.log(res)
                          //alert(res.response.data.message)
                           //console.log('AllPostsDatas', allPostsDatas)
                      })
                     // console.log(res.response.data.message)
-                     .catch((err) =>{console.log(err)
-                      alert(`Désolé!vous n'êtes pas autorisé a supprimé ce message!`)});
+                     .catch((err) =>{console.log(err)})
+                      //alert(`Désolé!vous n'êtes pas autorisé a supprimé ce message!`)});
 
                      
-             }; deleteOneComment()
+             };deleteOneComment();
     
  }else{
      alert(`Désolé!vous n'êtes pas autorisé a supprimé ce message!`)
@@ -178,7 +184,7 @@ const handleSubmitComment = async (userInfos) => {
 
 
 const handleUpdateOneComment = () => {
-    if(userId == comment.UserId){  
+    if(userId == comment.UserId || userInfos.isAdmin){  
          const updateOneComment = async () => {
             /* if(title || text || image ){
                  console.log('**START HANDLE UPDATE POST**');

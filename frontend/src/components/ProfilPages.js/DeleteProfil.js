@@ -52,6 +52,7 @@ const DeleteProfil = () => {
 
     
 const handleDeleteUser = () => {
+    if(userInfos.id == userId || userInfos.isAdmin){
         const deleteUser = async () => {
             axios.delete(`${process.env.REACT_APP_API_URL}api/users/` + userId,
                 {
@@ -69,8 +70,10 @@ const handleDeleteUser = () => {
                })
                 .catch((err) => console.log(err));
 
-        };
-        deleteUser();
+     };deleteUser(); }else{
+        alert("vous n'êtes pas autorisé à supprimé ce compte!")
+     };
+       
 }
 
 

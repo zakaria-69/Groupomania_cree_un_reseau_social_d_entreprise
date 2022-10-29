@@ -76,7 +76,7 @@ const Card = (data) => {
 
     //fonction de suppression de post 
         const handleDeletePost= () =>{
-           if(userId == post.UserId){  
+           if(userId == post.UserId || userInfos.isAdmin){  
         const deleteOnePost = async () => {
                        await axios.delete(`${process.env.REACT_APP_API_URL}api/posts/` + post.id,
                             {
@@ -107,7 +107,7 @@ const Card = (data) => {
 
 //fonction de modification de post 
     const handleUpdateOnePost = () => {
-       if(userId == post.UserId){  
+       if(userId == post.UserId || userInfos.isAdmin){  
             const updateOnePost = async () => {
                 if(title || text || image ){
                     console.log('**START HANDLE UPDATE POST**');
@@ -155,7 +155,7 @@ const Card = (data) => {
 
 //fonction de suppression d'image sur un post
 const handleDeletePostPicture =() => {
-    if(userId == post.UserId && image){  
+    if(userId == post.UserId || userInfos.isAdmin && image){  
         const deleteOnePostPicture = async () => {
                        await axios.delete(`${process.env.REACT_APP_API_URL}api/posts/`+ post.id +`/image`,
                             {
@@ -346,7 +346,7 @@ return (
     </form>
         {image ? (
         <nav className='footer-card'>
-            {userId == post.UserId ? (
+            {userId == post.UserId || userInfos.isAdmin ? (
                 <ul>
                     <li><button title='delete' onClick={() => {
                         if (window.confirm('voulez vous vraiment supprimer vôtre publication?'))
@@ -378,7 +378,7 @@ return (
                )}
         </nav>) : (
             <nav className='footer-card' style={{ borderTop: 'none' }}>
-                {userId == post.UserId ? (
+                {userId == post.UserId || userInfos.isAdmin ? (
                     <ul>
                         <li><button title='delete' onClick={() => {
                             if (window.confirm('voulez vous vraiment supprimer vôtre publication?')) { handleDeletePost(); }
