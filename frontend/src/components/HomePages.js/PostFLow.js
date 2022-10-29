@@ -17,16 +17,16 @@ const PostFLow = () => {
                 {
                     headers: { authorization: 'bearer ' + localStorage.getItem('token') },
                     Accept: 'application/json',
-                    'Content-Type': 'application/json',
+                    'Content-Type':'application/json',
 
                 })
                 .then((res) => {
                     setAllPostsDatas(res.data)
-                    console.log(allPostsDatas)
+                  //  console.log(allPostsDatas)
                 })
                 .catch((err) => console.log(err));
         };getAllPosts()
-    },[PostFLow])
+    },[])
 
     return (
         <div className='posts-flow-subcontainer'>
@@ -37,8 +37,8 @@ const PostFLow = () => {
                     {allPostsDatas && 
                     allPostsDatas.reverse() &&
                     allPostsDatas.map((post) =>{
-                        //console.log('postfrom map : ',post)
-                        return <Card post={post} key={post.id}/>
+                       // console.log('postfrom map : ',post.id)
+                        return <Card post={post} key={post.id}/> 
                     })
                     }
                 </ul>

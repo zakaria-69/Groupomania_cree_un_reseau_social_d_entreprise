@@ -1,4 +1,4 @@
-import React, { Component,useState,useEffect } from 'react';
+/*import React, { Component,useState,useEffect } from 'react';
 import axios from 'axios';
 
 const DeletePost = (Card) => {
@@ -38,7 +38,7 @@ const DeletePost = (Card) => {
 
         };
         getUser();
-    }, [])*/
+    }, [])
 
 
     //get all posts pour recuperer un tableau de tout les posts
@@ -116,7 +116,7 @@ const DeletePost = (Card) => {
   
     };return  handleCardDisplay();
 },[userInfos])
-*/
+
   
         return (
             <li><button title='delete'  onClick={() =>{
@@ -126,4 +126,4 @@ const DeletePost = (Card) => {
         );
     }
 
-export default DeletePost;
+export default DeletePost;*/

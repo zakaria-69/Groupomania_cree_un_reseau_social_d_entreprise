@@ -7,23 +7,23 @@ const Voter = require('../models').Voter;
 
 //create Comment
 exports.createComment = (req, res, next) => {
-    console.log(req.body)
     Comment.create({
         ...req.body
     }).then(() => res.status(201).json({ message: 'Objet enregistré !' }))
         .catch(error => res.status(400).json({ error }));
-}
+        //.catch(err =>console.log(err))
+} 
 
 //afficher tout les Comments
 exports.displayAllComments = (req, res, next) => {
-    Comment.findAll({ attributes: ["id","UserId","like","content", "createdAt", "updatedAt"] })
+    Comment.findAll({ attributes: ["id","UserId","like","content", "createdAt", "updatedAt","CommentId","PostId"] })
         .then(Comment => res.status(200).json(Comment))
         .catch(error => res.status(400).json({ error }))
 }
 
 
 //update one Comment
-exports.udpateOneComment = (req, res, next) => {
+exports.udpateOneComment = (req, res, next) => { 
     const commentObject = ({ ...req.body });
     Comment.findOne({ where: { id: req.params.id } })
         .then((comment) => {

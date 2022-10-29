@@ -99,7 +99,7 @@ textarea{
 }
 
 .submit-post{
-    width: 15%;
+    width: 20%;
     margin: 2% auto;
     padding: 1%;
     border-radius: 8%;
@@ -350,9 +350,148 @@ textarea{
     border: solid red 2px;
 }
 
-.cancel-image{
-    border: solid green 2px;
+
+.image-pic{
+    display: flex;
+}
+
+.delete-image-post-title{
+    margin: 2% 0;
+    border-bottom: double #FD2D01 3px ;
+    color: #FD2D01;
 }
 
 
+.delete-image-post-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2% auto;
+}
+
+#fa-xmark{
+    width: 1.5rem;
+    min-height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#fa-xmark:hover{
+    width: 1.5rem;
+    min-height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+}
+
+
+#fa-xmark:active{
+    width: 1.5rem;
+    min-height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    color: #4E5166;
+}
+
+.comments{
+    display: flex;
+    flex-direction: column;
+}
+
+.display-relative-comments{
+    display: flex;
+    justify-content: space-between;
+    min-height: 2rem;
+
+
+}
+
+
+.toggle-comment-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.toggle-comment-button{
+    width: 2rem;
+    height: 2rem;
+    
+    border: solid red 2px;
+}
+
+.edit-comments{
+    border-bottom: double #4E5166 5px;
+}
+
+.display-one-comment{
+    border: double #FD2D01 3px;
+    display: flex;
+    justify-content: space-between ;
+    padding: 1% 0;
+    margin: 2% 0;
+    
+}
+
+.display-one-comment p{
+    padding: 1.235rem;
+    
+}
+
+.comment-actions{
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.submit-comment{
+    border: solid orangered 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    background-color:white;
+    color: #FD2D01;
+    width: 20%;
+    margin: 2% auto;
+    box-shadow: 2px 2px 1px rgb(51 51 51 / 42%);
+    font-size: medium;
+    font-weight: bold;
+    cursor: pointer;
+}
+.comment-edit-and-display-container{
+    border: solid black 4px;
+}
+
+#update-comment-content{
+border: solid red 2px;
+width: 80%;
+min-height: 2rem;
+max-height: 10rem;
+}
+
+.comment-date-handler{
+    width: 100%;
+    margin: 2% 0;
+    border: solid red 2px;
+    display: flex;
+    justify-content: space-between;
+    color: #FD2D01;
+    background-color: #fff;
+}
+
+#content{
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 10rem;
+    min-height: 2rem;
+    margin: 2% 0;
+}
 

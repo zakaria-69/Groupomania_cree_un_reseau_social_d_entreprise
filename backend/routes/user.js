@@ -23,8 +23,7 @@ router.delete('/:id',auth, userCtrl.deleteOneUser);
 //delete image 
 router.delete('/:id/image',auth,userCtrl.deleteImage);
 
-//checkToken
-//router.get('/jwt',auth,userCtrl.checkUser);
+
 
 
 
