@@ -52,7 +52,7 @@ exports.login = (req, res, next) => {
 
 //display one user
 exports.displayOneUser = (req, res, next) => {
-    User.findOne({ attributes: ["id","firstName", "lastName", "email", "userName", "bio", "profilPicture"], where: { id: req.params.id } })
+    User.findOne({ attributes: ["id","firstName", "lastName", "email", "userName", "bio", "profilPicture","isAdmin"], where: { id: req.params.id } })
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));
 }

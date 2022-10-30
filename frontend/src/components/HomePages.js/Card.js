@@ -21,6 +21,7 @@ const Card = (data) => {
     const [isUpdated,setIsUpdated] = useState(false)
     const [isLiked,setIsLiked] = useState(false);
     const [content,setContent] = useState('');
+    const[isAdmin,setIsAdmin] = useState(false);
 
     const userId = localStorage.getItem('userId')
  
@@ -76,7 +77,7 @@ const Card = (data) => {
 
     //fonction de suppression de post 
         const handleDeletePost= () =>{
-           if(userId == post.UserId || userInfos.isAdmin){  
+           if(userInfos.id === post.UserId || userInfos.isAdmin){  
         const deleteOnePost = async () => {
                        await axios.delete(`${process.env.REACT_APP_API_URL}api/posts/` + post.id,
                             {
@@ -94,7 +95,11 @@ const Card = (data) => {
                             })
                            // console.log(res.response.data.message)
                             .catch((err) =>{console.log(err)
+                                console.log('userInfos admin',userInfos.isAdmin)
+                                console.log('userId',userId)
+                                console.log('post.UserId',post.UserId)
                              alert(`Désolé!vous n'êtes pas autorisé a supprimé ce message!`)});
+                            
 
                             
                     }; deleteOnePost()
@@ -107,7 +112,7 @@ const Card = (data) => {
 
 //fonction de modification de post 
     const handleUpdateOnePost = () => {
-       if(userId == post.UserId || userInfos.isAdmin){  
+       if(userInfos.id === post.UserId || userInfos.isAdmin){  
             const updateOnePost = async () => {
                 if(title || text || image ){
                     console.log('**START HANDLE UPDATE POST**');
@@ -174,7 +179,7 @@ const handleDeletePostPicture =() => {
                     }; deleteOnePostPicture()
            
         }else{
-            alert(`Aucune image à supprimer`)
+            alert(`Aucune image à supprimer ou vous n'avez pas les droits.`)
 
         };
 
@@ -324,12 +329,7 @@ return (
             <img src={image} alt='post-picture' className='post-imageUrl'></img>      
         </div>
         </div>       
-        }    
-        {/*image ? (<div className='body-card'>
-            <img src={image} alt='post-picture' className='post-imageUrl'></img>
-        </div>) : (
-            <div className='body-card' style={{display:'none'}}></div>
-        )*/}
+        }  
          {isUpdated === false && 
          <input type="submit"
           value='mettre à jour la publication'
@@ -346,8 +346,7 @@ return (
     </form>
         {image ? (
         <nav className='footer-card'>
-            {userInfos.id === post.UserId || userInfos.isAdmin ? (
-                <ul>
+              <ul>
                     <li><button title='delete' onClick={() => {
                         if (window.confirm('voulez vous vraiment supprimer vôtre publication?'))
                          { handleDeletePost()}
@@ -371,14 +370,8 @@ return (
                     </button>
                     </li>
                 </ul>
-            ) : (
-                <ul>
-                    <li id='like-item'><button title='like'><i class="fa-regular fa-heart"><span id={like ? 'post-like-number' : null}>{like}</span></i></button></li>
-                </ul>
-               )}
         </nav>) : (
             <nav className='footer-card' style={{ borderTop: 'none' }}>
-                {userInfos.id === post.UserId || userInfos.isAdmin ? (
                     <ul>
                         <li><button title='delete' onClick={() => {
                             if (window.confirm('voulez vous vraiment supprimer vôtre publication?')) { handleDeletePost(); }
@@ -401,21 +394,7 @@ return (
                            {/*} </button>*/}
                         </li>
                     </ul>
-                ) : (
-
-                    <ul>
-                        <li id='like-item'>
-                            {/*} <button title='like' onClick={handleLikePost}>*/}
-                                <i class="fa-regular fa-heart">
-                                    <span id={like ? 'post-like-number' : null}>
-                                        {like}
-                                    </span>
-                                </i>
-                             {/*}</button>*/}
-                        </li>
-                    </ul>
-                )}
-              </nav>
+             </nav>
         )}
         
         <div className='comments'>
@@ -454,27 +433,9 @@ return (
             <input type="submit"
              className="submit-comment"
              value="commenter"
-            /> 
-          
-            
-            
+            />            
         </div>
         </form>
-                      {/*}  <p>Edit Comment</p>
-                        <br />
-                        <input type='text'
-                            name='content'
-                            id='content'
-                            defaultValue='saisissez vôtre commmentaire ici'
-                        >
-                        </input>
-                        <input
-                        type='submit'
-                        name='submit-comment-edit'
-                        value='poster'
-                        defaultValue='saissez vôtre commentaire ici'
-                        onChange={(e) => setContent(e.target.value)}
-                        ></input>*/}
                     </div>
                     <ul>
                         {allCommentsDatas &&
