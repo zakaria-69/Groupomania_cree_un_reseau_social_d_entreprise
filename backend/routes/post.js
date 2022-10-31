@@ -3,6 +3,7 @@ const router = express.Router();
 const auth = require('../middleware/auth')
 const postCtrl = require('../controllers/post');
 const multer = require('../middleware/multer-config')
+const commentCtrl = require("../controllers/comment")
 
 //create
 router.post('/',auth,multer,postCtrl.createPost);
@@ -26,5 +27,8 @@ router.delete('/:id/image',auth,postCtrl.deleteImage)
 //like systeme 
 
 router.post('/:id/like',auth,postCtrl.likePost)
+
+//read one
+router.get('/:id/comments',auth, commentCtrl.displayAllCommentsForPost);
 
 module.exports = router;

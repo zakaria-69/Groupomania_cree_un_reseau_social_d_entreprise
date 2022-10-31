@@ -19,6 +19,12 @@ exports.displayAllComments = (req, res, next) => {
         .catch(error => res.status(400).json({ error }))
 }
 
+exports.displayAllCommentsForPost =(req,res,next) => {
+    Comment.findAll( { where: { id: req.params.id }, attributes: ["id", "UserId", "like", "content", "createdAt", "updatedAt", "CommentId", "PostId"] })
+    .then(Comment => res.status(200).json(Comment))
+    .catch(error => res.status(400).json({ error }))
+}
+
 //update one Comment
 exports.udpateOneComment = (req, res, next) => {
     const commentObject = ({ ...req.body });

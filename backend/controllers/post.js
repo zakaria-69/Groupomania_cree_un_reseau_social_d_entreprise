@@ -121,7 +121,7 @@ exports.likePost = (req, res, next) => {
                         post.like -= 1;
                         post.save();
                         Voter.destroy({ where: { UserId: req.auth.userId, PostId: post.id } })
-                        res.status(200).json({ message: 'like retiré' });
+                        res.status(200).json({ message: 'like retiré', like : post.like });
                     }
                     else {
                         const voter = new Voter();
@@ -130,7 +130,7 @@ exports.likePost = (req, res, next) => {
                         voter.save();
                         post.like += 1;
                         post.save();
-                        res.status(201).json({ message: 'like added' })
+                        res.status(201).json({ message: 'like added', like : post.like })
                     }
                 })
                 .catch(err => res.status(500).json({ err }))

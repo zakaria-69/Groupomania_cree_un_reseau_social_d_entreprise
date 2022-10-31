@@ -28,7 +28,7 @@ const CommentCard = (data) => {
     userId = parseInt(userId)
     //  console.log('constuserId',userId)
     const comment = data.comment;
-    //console.log('data.comment',comment)
+    console.log('data.comment',comment)
     //console.log(comment.id);
     //console.log(comment.CommentId);
     //console.log('userInfos',userInfos.id)

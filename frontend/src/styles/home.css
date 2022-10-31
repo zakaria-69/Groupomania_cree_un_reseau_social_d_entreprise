@@ -538,7 +538,6 @@ max-height: 10rem;
 }
 
 #comment-like{
-    border: solid red 2px;
     max-height: 1.5rem;
     display: flex;
     justify-content: center;

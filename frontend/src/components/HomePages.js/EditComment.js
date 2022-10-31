@@ -1,35 +1,16 @@
-import React, { Component ,useState ,useEffect} from 'react';
+/*import React, { Component ,useState ,useEffect} from 'react';
 import axios from 'axios';
 
 const EditComment = (comment) => {
 
-
-    const [userInfos,setUserInfos]= useState('');
-const [allCommentsDatas,setAllCommentsDatas] = useState('');
-let [createdAt,setCreatedAt] = useState('');
-let [updatedAt,setUpdatedAt] = useState('');
-let [uid,setUid] = useState('');
 let [commentId,setCommentId] = useState('');
-let [uniqueCommentId,setUniqueCommentId] = useState('');
-let [like,setLike] = useState('');
 let [content,setContent] = useState('');
-const [isUpdated,setIsUpdated] = useState('');
-//const [userId,setUserId] = useState ('');
-const [allPostsDatas,setAllPostsDatas] = useState('');
-const [isComUpdated,setIsComUpdated] = useState(false);
-const [postId,setPostId] = useState('');
-                 
-
-
 
    let userId = localStorage.getItem('userId')
    userId =parseInt(userId)
     console.log('constuserId',userId)
- //comment = comment.comment;
-console.log('data.comment',comment)
-//console.log(comment.id);
-//console.log(comment.CommentId);
-//console.log('userInfos',userInfos.id)
+
+
 
 //
 
@@ -49,69 +30,37 @@ const timeStampHandler = (num) =>{
         return date.toString();
 }
 
-useEffect(() => {
-   
-    const getUser = async (comment) => {
-        console.log('comment from get user',comment)
-        axios.get(`${process.env.REACT_APP_API_URL}api/users/` + userId,
-            {
-                headers: { authorization: 'bearer ' + localStorage.getItem('token') },
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-
-            })
-            .then((res) => {
-                setUserInfos(res.data)
-             // console.log('userInfos', userInfos);
-            })
-            .catch((err) => console.log(err));
-
-    };
-    getUser();
-}, [EditComment])
-
-//get all posts
-useEffect(() => {
-    const getAllPosts = async () => {
-        axios.get(`${process.env.REACT_APP_API_URL}api/posts`,
-            {
-                headers: { authorization: 'bearer ' + localStorage.getItem('token') ,
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-
-            }})
-            .then((res) => {
-                setAllPostsDatas(res.data)
-               console.log('AllPostsDatas form comment Card', allCommentsDatas)
-            })
-            .catch((err) => console.log(err));
-    }; getAllPosts()
-}, [EditComment])
-
-
-//get all comments
-useEffect(() => {
-    const getAllComments = async () => {
-        axios.get(`${process.env.REACT_APP_API_URL}api/comments`,
-            {
-                headers: { authorization: 'bearer ' + localStorage.getItem('token') },
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-
-            })
-            .then((res) => {
-                setAllCommentsDatas(res.data)
-               // console.log('AllcommentsDatas', allCommentsDatas)
-            })
-            .catch((err) => console.log(err));
-    }; getAllComments()
-}, [EditComment])
-
 
 const handleSubmitComment = async () => {
-   console.log('userinfosId',comment.UserId)
-   console.log('commentID',comment.CommentId)
-     if(content === '' ||  comment.CommentId ==='' || comment.UserId === ''){
+    console.log('com content',content)
+   console.log('userinfosId',userId)
+   await axios({
+    method: 'patch',
+    url: `${process.env.REACT_APP_API_URL}api/comment/`+ post.id,
+    data: {
+        image,
+        title,
+        text
+    },
+    headers: {
+        authorization: 'bearer ' + localStorage.getItem('token'),
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+    }
+})
+    .then((res) => {
+        console.log('title 4', title)
+        setAllPostsDatas(res.data)
+        alert('vôtre post a été correctement modifié')
+        setIsUpdated(false)
+        // window.location.reload();
+        console.log('AllPostsDatas from patch post', res)
+    })
+    .catch((err) => {
+        console.log(err)
+        alert("Désolé!Vous n'êtes pas autorisé à modifié ce post!")
+    })
+    /* if(content === '' ||  comment.CommentId ==='' || comment.UserId === ''){
          alert('un des champs est vide')
          setContent('')
      }else if( content === null ||userId ===null || commentId === null){
@@ -165,17 +114,17 @@ const handleSubmitComment = async () => {
         console.log('content',like)
   
     };return  handleCommentCardDisplay();
-},[])*/
+},[])
  
 
 
         return (
             <div>
-                 {/*}  <form action=''  id ='comment-submit-form' onSubmit={handleSubmitComment} >*/} 
+                 {/*}  <form action=''  id ='comment-submit-form' onSubmit={handleSubmitComment} > 
         <div className='post-edit'>
-            <h3>{userInfos.firstName} {userInfos.userName}</h3>
-           {/* <label htmlFor='content' id='content'>Commentaire</label> */}
-            {/*<CommentFlow />*/}
+            <h3>Entrez new comments</h3>
+           {/* <label htmlFor='content' id='content'>Commentaire</label> 
+            {/*<CommentFlow />
             <textarea 
                     type='text'
                     name='update-content'
@@ -191,7 +140,7 @@ const handleSubmitComment = async () => {
           {/*}  <div className='comment-date-handler'>
                 <span className='creation-date'>{timeStampHandler(createdAt)}</span>
                 <span className='udpated-date'>{timeStampHandler(updatedAt)}</span>
-        </div>*/}
+        </div>
             <input type="submit"
              className="submit-comment"
              value="commenter"
@@ -199,9 +148,9 @@ const handleSubmitComment = async () => {
              
             />            
         </div>
-        {/*</form>  */}
+        {/*</form>  
             </div>
         );
     }
 
-export default EditComment;
+export default EditComment;*/
