@@ -3,6 +3,7 @@ import axios from 'axios';
 import CommentCard from './CommentCard';
 //import DeletePost from './DeletePost';
 //import {handleDeletePost} from './DeletePost'
+import EditComment from './EditComment';
 
 const Card = (data) => {
     const [allCommentsDatas,setAllCommentsDatas] = useState('');
@@ -22,16 +23,15 @@ const Card = (data) => {
     const [isLiked,setIsLiked] = useState(false);
     const [content,setContent] = useState('');
     const[isAdmin,setIsAdmin] = useState(false);
+    let [commentId,setCommentId] = useState('');
+    const [userHasLiked,setUserHasLiked] = useState('false')
 
-    const userId = localStorage.getItem('userId')
+    let userId = localStorage.getItem('userId')
+    userId= parseInt(userId)
+    console.log(userId)
  
     const post = data.post;
     //console.log('data.post',post)
-    
-
-   
-
-    
 
     //get user pour recuperer les data du user de chaque post
 
@@ -68,7 +68,7 @@ const Card = (data) => {
                 })
                 .then((res) => {
                     setAllPostsDatas(res.data)
-                    //console.log('AllPostsDatas', allPostsDatas)
+                    console.log('AllPostsDatas', allPostsDatas)
                 })
                 .catch((err) => console.log(err));
         }; getAllPosts()
@@ -190,30 +190,60 @@ const handleDeletePostPicture =() => {
 
 
 //fonction de gestion des likes sur les posts
- /*   const handleLikePost = async () => {
-        if(post.userId !== userId && !isLiked ){
-            console.log('veut liker')
+/*useEffect(() => {*/
+    const handleLikePost = async () => {
+          // try{
+        if(/*userId !== post.userId */  /*userId !== post.UserId &&*/ isLiked ===false ){
+             console.log('veut liker')
+             //console.log('userinfos Id = : id du user connecter',userInfos.id)
+             console.log('userinfos Id = : id du user connecter from ls',userId)
+            console.log('post like before = nombre de like :',post.like)
+            console.log(" const like nombre de like ",like)
+            console.log('post User id = : id du post a liker',post.UserId)
+            console.log('post Id = : id du post a liker',post.id)
+            console.log('post title = : title du post a liker',post.title)
+            setIsLiked(true);
+            post.like  +=1;
+            console.log('post like',post.like)
+            
            // console.log(like)
-        }
-        
-await axios.post(`${process.env.REACT_APP_API_URL}api/posts/`+ post.id +'/like',
-       
-            {
-            data: {
-             like,
+        }else if(/*userId === post.UserId &&*/ isLiked === true){
+            post.like -=1;
+            console.log('post like',post.like)
+            setIsLiked(false); 
 
+        }{
+
+        
+await axios({
+    method :"post",
+    url : `${process.env.REACT_APP_API_URL}api/posts/`+ post.id +'/like', 
+            data: {
+             like : post.like,
+             UserId : userId
             },
                 headers: { authorization: 'bearer ' + localStorage.getItem('token') ,
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type':'application/json'
 
             }})
             .then((res) => {
-                setLike(res.data)
+            //JSON.stringify(res.data)
+                setLike(res.data.like)
                 console.log('postlikeNumber', like)
+                alert("vôtre choix a été pris en compte")
             })
-            .catch((err) => console.log(err));
-    }; handleLikePost()*/
+            .catch((err) => console.log(err)); 
+        }
+       // }
+ /*catch(err){
+    console.log(err)
+ }*/
+}
+/*},[Card])*/
+
+
+
 
     //get all comments
     useEffect(() => {
@@ -256,7 +286,7 @@ await axios.post(`${process.env.REACT_APP_API_URL}api/posts/`+ post.id +'/like',
        //  console.log('title',title);
   
     };return  handleCardDisplay();
-},[userInfos])
+},[handleLikePost])
 
 //conversion des date et heures en jours lettre entier date 2 digit année 4 chiffres + heures minutes secondes
 const timeStampHandler = (num) =>{
@@ -273,6 +303,69 @@ const timeStampHandler = (num) =>{
         let date = new Date(timeStamp).toLocaleDateString('fr-FR',options)
         return date.toString();
 }
+
+
+const handleSubmitComment = async (data) => {
+    const comment = data.comment;
+    console.log('comment from handlesubmit card',comment)
+    // setUniqueCommentId(comment.id)
+    // console.log(comment.id);
+    //setUserId(userInfos.id);
+    // commentId= comment.id;
+   // console.log(commentId)
+   //setCommentId(comment.CommentId);
+   console.log('userinfosId',comment.UserId)
+  // console.log(userId)
+   console.log('commentID',comment.CommentId)
+    // console.log(commentId)
+    /* console.log('**START HANDLE UPDATE PROFILE**');
+     console.log('content :' + content);
+     console.log('updatedAt :' + updatedAt);
+     console.log('createdAt :' + createdAt);
+     console.log('like :' + like);
+     console.log('userId :' + userId);
+     console.log('**END HANDLE UPDATE PROFILE**');
+     //controle si tout les champs vides */
+     if(content === '' ||  comment.CommentId ==='' || comment.UserId === ''){
+         alert('un des champs est vide')
+     }else if( content === null ||userId ===null || commentId === null){
+         alert("un des champs n'est pas bon ")
+ 
+     }else if( content === undefined ||comment.CommentId ===undefined || commentId === undefined){
+         alert("un des champs est undefined ")
+ 
+     }{
+         await axios({
+             method :"post",
+             url:`${process.env.REACT_APP_API_URL}api/comments`,
+                  data: {
+                     content,
+                     UserId :comment.UserId,
+                     CommentId : comment.CommentId
+                 },
+                     headers: { authorization: 'bearer ' + localStorage.getItem('token') ,
+                     Accept: 'application/json',
+                     'Content-Type': 'application/json'
+ 
+                 }})
+                 .then((res) => {
+                     console.log(res)
+                     alert('Post crée avec succès');
+                     
+                 })
+                 .catch((err) =>alert( console.log(err)));
+                // alert("err")
+     }
+ }
+
+
+ const handleRelativeComments = (post,comment) => {
+    console.log('comment===============',comment)
+    console.log('post===================',post)
+    allCommentsDatas.filter(post => post.id !== comment.UserId )
+
+ }
+    
 
 return (
         <div className='card'>
@@ -361,7 +454,7 @@ return (
                             </i>
                         </button>
                     </li>
-                    <li id='like-item'><button title='like'>
+                    <li id='like-item'><button title='like' onClick={handleLikePost}>
                         <i class="fa-regular fa-heart">
                             <span id={like ? 'post-like-number' : null}>
                                 {like}
@@ -385,13 +478,13 @@ return (
                             </button>
                         </li>
                         <li id='like-item'>
-                           {/*} <button title='like' onClick={handleLikePost}>*/}
+                            <button title='like' onClick={handleLikePost}>
                                 <i class="fa-regular fa-heart">
                                     <span id={like ? 'post-like-number' : null}>
                                         {like}
                                     </span>
                                 </i>
-                           {/*} </button>*/}
+                            </button>
                         </li>
                     </ul>
              </nav>
@@ -399,7 +492,7 @@ return (
         
         <div className='comments'>
             <div className='display-relative-comments'  onClick={() => setDisplayComments(!displayComments)}>
-               <p className='toggle-comment-title'> commentaires</p>
+               <p className='toggle-comment-title' onClick={handleRelativeComments}> commentaires</p>
                 <span>
                     <button title='comment' className='toggle-comment-button' onClick={() => setDisplayComments(!displayComments)}>
                         <i class="fa-regular fa-comment">
@@ -412,11 +505,11 @@ return (
                         {displayComments &&
                 <div className='comment-edit-and-display-container'>
                     <div className='edit-comments'>
-                <form action=''  id ='comment-submit-form' > 
+              {/*}  <form action=''  id ='comment-submit-form' onSubmit={handleSubmitComment} > 
         <div className='post-edit'>
             <h3>{userInfos.firstName} {userInfos.userName}</h3>
             <label htmlFor='content' id='content'>Commentaire</label>
-            {/*<CommentFlow />*/}
+            {/*<CommentFlow />
             <textarea type='text'
                     name='content'
                     placeholder='entrez vôtre commentaire'
@@ -426,6 +519,7 @@ return (
                     onChange={(e) => setContent(e.target.value)}
             value={content}>
             </textarea>
+            
             <div className='comment-date-handler'>
                 <span className='creation-date'>{timeStampHandler(createdAt)}</span>
                 <span className='udpated-date'>{timeStampHandler(updatedAt)}</span>
@@ -433,11 +527,26 @@ return (
             <input type="submit"
              className="submit-comment"
              value="commenter"
+             onClick={handleSubmitComment}
+             
             />            
         </div>
-        </form>
+        </form>  */}
+         
+            <EditComment />
+            <ul>
+                  {allCommentsDatas &&
+                            // comment.id === comment.UserId &&
+                            allCommentsDatas.reverse() &&
+                          ((comment) => {
+                                console.log('postfrom map : ', comment.id)
+                                return <EditComment comment={comment} key={comment.id} />
+
+                            })}
+                        </ul> 
+       
                     </div>
-                    <ul>
+                    <ul id='display-all-relative-comments'>
                         {allCommentsDatas &&
                             // comment.id === comment.UserId &&
                             allCommentsDatas.reverse() &&
@@ -446,7 +555,8 @@ return (
                                 return <CommentCard comment={comment} key={comment.id} />
 
                             })}
-                    </ul>
+                        </ul>
+                   
                 </div>
                 }
             </div>

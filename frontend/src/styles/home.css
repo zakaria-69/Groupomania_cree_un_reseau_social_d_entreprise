@@ -407,7 +407,7 @@ textarea{
     display: flex;
     justify-content: space-between;
     min-height: 2rem;
-
+    cursor: pointer;
 
 }
 
@@ -454,18 +454,15 @@ textarea{
 
 .submit-comment{
     border: solid orangered 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1%;
     background-color:white;
     color: #FD2D01;
-    width: 20%;
-    margin: 2% auto;
+    
     box-shadow: 2px 2px 1px rgb(51 51 51 / 42%);
     font-size: medium;
     font-weight: bold;
     cursor: pointer;
+    padding: 1%;
+    text-align: center;
 }
 .comment-edit-and-display-container{
     border: solid black 4px;
@@ -495,4 +492,17 @@ max-height: 10rem;
     min-height: 2rem;
     margin: 2% 0;
 }
+
+.valid-edit-comment{
+    border: solid black 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*#admin-display{
+    border: solid black 20px; 
+    display: flex;
+}*/
 

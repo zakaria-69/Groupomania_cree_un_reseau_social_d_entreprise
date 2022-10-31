@@ -8,9 +8,7 @@ const HomePages = () => {
 
         return (
             <div className='posts-flow-container'>
-                <PostFLow />
-                
-                
+                <PostFLow />               
             </div>
         );
     }

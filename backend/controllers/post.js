@@ -27,6 +27,8 @@ exports.createPost = (req, res, next) => {
 };
 
 //afficher tout les posts
+
+//includes pour recupere les data du post like 
 exports.displayAllPosts = (req, res, next) => {
     Post.findAll()
         .then(post => res.status(200).json(post))

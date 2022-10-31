@@ -1,5 +1,7 @@
 import React, { Component,useEffect,useState } from 'react';
 import axios from 'axios';
+import Card from './Card';
+import EditComment from './EditComment';
 
 const CommentCard = (data) => {
 
@@ -24,9 +26,9 @@ const [isComUpdated,setIsComUpdated] = useState(false);
 
    let userId = localStorage.getItem('userId')
    userId =parseInt(userId)
-    console.log('constuserId',userId)
+  //  console.log('constuserId',userId)
 const comment = data.comment;
-console.log('data.comment',comment)
+//console.log('data.comment',comment)
 //console.log(comment.id);
 //console.log(comment.CommentId);
 //console.log('userInfos',userInfos.id)
@@ -112,11 +114,14 @@ const handleSubmitComment = async (userInfos) => {
      //controle si tout les champs vides */
      if(content === '' ||  comment.CommentId ==='' || comment.UserId === ''){
          alert('un des champs est vide')
+         setContent('')
      }else if( content === null ||userId ===null || commentId === null){
          alert("un des champs n'est pas bon ")
+         setContent('')
  
      }else if( content === undefined ||comment.CommentId ===undefined || commentId === undefined){
          alert("un des champs est undefined ")
+         setContent('')
  
      }{
          await axios({
@@ -135,9 +140,11 @@ const handleSubmitComment = async (userInfos) => {
                  .then((res) => {
                      console.log(res)
                      alert('Post crée avec succès');
+                     setContent('')
                      
                  })
                  .catch((err) =>alert( console.log(err)));
+                 setContent('')
                 // alert("err")
      }
  }
@@ -278,7 +285,10 @@ const handleRelativeComments = (props) => {
                          name='update-comment'
                          id='update-comment-content'
                          defaultValue={comment.content}
-                         maxLength={250}>
+                         maxLength={250}
+                         onChange={(e) => setContent(e.target.value)}
+                    
+                         >
                  </textarea>
                        ) :(
                        <p>{comment.content}{comment.id} afficher les coms</p> 
@@ -313,8 +323,28 @@ const handleRelativeComments = (props) => {
                         <input type='submit' id='submit-comment' value='modifier'onClick={handleSubmitComment}></input>
 
                 </div>)}
+                <ul>
+             {/*}   {allCommentsDatas &&
+                            // comment.id === comment.UserId &&
+                            allCommentsDatas.reverse() &&
+                          ((comment) => {
+                                console.log('postfrom map : ', comment.id)
+                                return <EditComment comment={comment} key={comment.id} />
 
+                            })}
 
+                        {allCommentsDatas &&
+                            // comment.id === comment.UserId &&
+                            allCommentsDatas.reverse() &&
+                            allCommentsDatas.map((comment) => {
+                                console.log('postfrom map : ', comment.id)
+                                return <CommentCard comment={comment} key={comment.id} />
+
+                            })} */}
+                        </ul>
+                
+                
+              
             </div>
                 
           
