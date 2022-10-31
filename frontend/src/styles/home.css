@@ -228,7 +228,7 @@ textarea{
 
 }
 
-#post-like-number{
+#post-like-number,#comment-like-number{
     width: 1.2rem;
     height: 1.2rem;
     transform: translate(-30%,50%);
@@ -505,4 +505,42 @@ max-height: 10rem;
     border: solid black 20px; 
     display: flex;
 }*/
+
+/*#comment-like-number{
+    border:solid red 2px;
+    width: 1.2rem;
+    height: 1.2rem;
+    transform: translate(-30%,50%);
+    color: #FFD7D7;
+    font-weight: 900;
+    border-radius: 50%;
+    border: solid #FD2D01 1px;
+    background-color: #4E5166;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}*/
+
+#no-likes{
+    display: none;
+}
+
+#no-likes::after{
+    display: none;
+    content: '';
+}
+
+.fa-heart{
+   
+    max-height: 100%;
+}
+
+#comment-like{
+    border: solid red 2px;
+    max-height: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
 
