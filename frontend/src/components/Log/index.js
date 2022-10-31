@@ -18,7 +18,6 @@ const Log = () => {
     };
 
     return (
-
         <div className='connection-form'>
             <div className='form-container'>
                 <ul className='switch_register_login'>
@@ -39,8 +38,6 @@ const Log = () => {
                 </ul>
             </div>
         </div>
-
-
     );
 }
 

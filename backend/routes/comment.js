@@ -9,7 +9,6 @@ router.post('/',auth, commentCtrl.createComment);
 //read all
 router.get('/',auth, commentCtrl.displayAllComments);
 
-
 //update one
 router.patch('/:id',auth, commentCtrl.udpateOneComment);
 
@@ -19,9 +18,5 @@ router.delete('/:id',auth, commentCtrl.deleteOneComment);
 //like systeme comment 
 
 router.post('/:id/like',auth,commentCtrl.likeComment)
-
-
-
-
 
 module.exports = router;

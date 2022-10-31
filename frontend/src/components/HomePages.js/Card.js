@@ -1,8 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import CommentCard from './CommentCard';
-//import DeletePost from './DeletePost';
-//import {handleDeletePost} from './DeletePost'
 import EditComment from './EditComment';
 
 const Card = (data) => {
@@ -22,9 +20,7 @@ const Card = (data) => {
     const [isUpdated,setIsUpdated] = useState(false)
     const [isLiked,setIsLiked] = useState(false);
     const [content,setContent] = useState('');
-    const[isAdmin,setIsAdmin] = useState(false);
     let [commentId,setCommentId] = useState('');
-    const [userHasLiked,setUserHasLiked] = useState('false')
 
     let userId = localStorage.getItem('userId')
     userId= parseInt(userId)

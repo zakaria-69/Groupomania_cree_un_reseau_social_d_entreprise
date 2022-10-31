@@ -37,7 +37,7 @@ db.Sequelize = Sequelize;
 db.user = require('./model.user')(sequelize,Sequelize);
 db.post = require('./model.post')(sequelize,Sequelize);
 db.comment = require('./model.comment')(sequelize,Sequelize);
-db.voter = require('./voter')(sequelize,Sequelize);
+db.voter = require('./model.voter')(sequelize,Sequelize);
 
 
 db.user.hasMany(db.post,{onDelete:'CASCADE'});

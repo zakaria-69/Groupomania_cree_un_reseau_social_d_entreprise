@@ -5,12 +5,10 @@ import axios from 'axios';
 const UpdateProfil = () => {
     let [userInfos, setUserInfos] = useState('');
     const userId = localStorage.getItem('userId');
-    //   console.log(userId)
     let [image, setImage] = useState('');
     let [firstName, setFirstName] = useState('');
     let [lastName, setLastName] = useState('');
     let [userName, setUserName] = useState('');
-    //const [email, setEmail] = useState('');
     let [bio, setBio] = useState('');
 
     useEffect(() => {
@@ -20,31 +18,28 @@ const UpdateProfil = () => {
                     headers: { authorization: 'bearer ' + localStorage.getItem('token') },
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-
                 })
                 .then((res) => {
                     setUserInfos(res.data);
-                    console.log('userInfos', res.data);
+
                 })
                 .catch((err) => console.log(err));
-
         };
         getUser();
     }, [])
-
     const handleUpdateProfil = async (e) => {
         e.preventDefault();
 
         console.log('**START HANDLE UPDATE PROFILE**');
         console.log('userInfos :', userInfos);
-        console.log('image :'+image);
+        console.log('image :' + image);
         console.log('firstName :' + firstName);
         console.log('lastName :' + lastName);
         console.log('userName :' + userName);
         console.log('bio :' + bio);
         console.log('**END HANDLE UPDATE PROFILE**');
 
-        if (firstName != '' || lastName != '' || userName != '' || bio != '' || image !='') {
+        if (firstName != '' || lastName != '' || userName != '' || bio != '' || image != '') {
             //gestion des champs
             //const imageValidation = document.getElementById('image');
             const firstNameValidation = document.getElementById('firstName');
@@ -127,31 +122,26 @@ const UpdateProfil = () => {
                         userName,
                         bio
                     },
-                        headers: { authorization: 'bearer ' + localStorage.getItem('token') ,
+                    headers: {
+                        authorization: 'bearer ' + localStorage.getItem('token'),
                         Accept: 'application/json',
                         'Content-Type': 'multipart/form-data'
-    
-                    }})
-                 .then((res) => {
-                        console.log("res1", res)
 
-                        console.log('resdata', res.data)
-                        console.log("userInfos from res patch", userInfos)
+                    }
+                })
+                    .then((res) => {
                         alert('Felicitations ! Vôtre compte à été modifié avec succès  👍')
                         window.location = '/profil';
                     })
                     .catch((res) => {
                         console.log(res)
-                        //fieldError.innerHTML = res.response.data.error.errors[0].message;
                     })
             }
         } else {
             alert('Rien à modifier');
         }
-
     }
 
- 
     return (
         <div className='updtate-profil-container'>
             <form action='' onSubmit={handleUpdateProfil} id="update-profil-form">
@@ -159,11 +149,11 @@ const UpdateProfil = () => {
                 <label htmlFor='image' className='profil-picture-update-label'>Image de Profil</label>
                 <br />
                 <input type='file'
-                    name='image'         
+                    name='image'
                     id='image'
                     accept='.jpg, .png, .jpeg, .gif'
                     onChange={(e) => setImage(e.target.files[0])}
-                    />
+                />
                 <br />
 
                 {/*firstName*/}
@@ -216,11 +206,10 @@ const UpdateProfil = () => {
                 <div className='bio error'></div>
                 <br />
                 <div className='field error' id='field'></div>
-                <br></br>
+                <br />
                 <input type="submit" value='mettre à jour le profil' className='update-profil-submit' />
             </form>
         </div>
-
     )
 }
 

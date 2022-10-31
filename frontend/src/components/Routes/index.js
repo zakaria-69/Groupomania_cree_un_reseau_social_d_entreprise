@@ -17,11 +17,9 @@ class index extends Component {
                     <Route path="/profil" exact element={<Profil />} />
                     <Route path="/" exact element={<Home />} />
                     <Route path="*" element={<NotFound />} />
-
                 </Routes>
                 <Footer />
             </Router>
-
         );
     }
 }

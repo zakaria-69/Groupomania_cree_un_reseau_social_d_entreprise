@@ -1,9 +1,6 @@
 const express = require ('express');
 const cookieParser = require('cookie-parser');
 const app = express();
-//const auth = require('./middleware/auth')
-// const multer = require('./middleware/multer-config')
-
 
 const db = require("./models/index")
 
@@ -18,19 +15,6 @@ const commentRoutes = require('./routes/comment');
 
 const sequelize = require('sequelize');
 
-/*const corsOptions = {
-  origin: "http://localhost:3001",
-  credentials: true,
-  allowedHeaders: ["sessionId", "Content-Type"],
-  exposedHeaders: ["sessionId"],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  preflightContinue: false,
-};
-app.use(cors(corsOptions));
-app.use(cookieParser());*/
-
-
-
 //outrepasser cors error
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -39,13 +23,8 @@ app.use((req, res, next) => {
     next();
   });
 
-  //donne acces aux contenu des objets de requête(anciennement bodyParser)
-//app.use(express.json());
-
 app.use(express.json({  extended: true }));
 app.use(express.urlencoded({  extended: true }));
-
-
 
 app.use('/api/users',userRoutes);
 app.use('/api/posts',postRoutes);

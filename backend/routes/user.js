@@ -23,9 +23,4 @@ router.delete('/:id',auth, userCtrl.deleteOneUser);
 //delete image 
 router.delete('/:id/image',auth,userCtrl.deleteImage);
 
-
-
-
-
-
 module.exports = router;

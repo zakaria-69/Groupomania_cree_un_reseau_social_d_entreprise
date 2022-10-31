@@ -8,8 +8,6 @@ const LoginForm = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         const loginError = document.querySelector('.login.error');
-
-
         axios({
             method: 'post',
             url: `${process.env.REACT_APP_API_URL}api/users/login`,
@@ -19,16 +17,13 @@ const LoginForm = () => {
             },
         })
             .then((res) => {
-                console.log('res1', res.data.token)
-                localStorage.setItem('token',res.data.token);
-                localStorage.setItem('userId',res.data.userId)
-                console.log('res1id', res.data.userId)
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('userId', res.data.userId)
                 alert('Vous êtes connecter avec succès 👌 ');
                 window.location = '/';
-                
+
             })
             .catch((res) => {
-                console.log(res)
                 loginError.innerHTML = res.response.data.message;
             })
     }
@@ -43,8 +38,6 @@ const LoginForm = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email} />
             <br />
-
-
             <label htmlFor='password'>Mot de passe</label>
             <br />
             <input type='password'
@@ -54,12 +47,8 @@ const LoginForm = () => {
                 value={password} />
             <div className='login error'></div>
             <br />
-
-
             <input type='submit' value='Se connecter' id='validate-form' />
         </form>
-
-
     );
 }
 

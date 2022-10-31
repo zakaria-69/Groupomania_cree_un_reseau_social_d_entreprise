@@ -3,12 +3,10 @@ import axios from 'axios';
 import Card from './Card';
 import EditPost from './EditPost';
 
-
 const PostFLow = () => {
-    const [allPostsDatas,setAllPostsDatas] = useState('');
-   // handleCardDisplay();
-   const [postDataI, setPostDataI] = useState ('');
-    
+    const [allPostsDatas, setAllPostsDatas] = useState('');
+    // handleCardDisplay();
+    const [postDataI, setPostDataI] = useState('');
 
     //récuperation des posts via la route getAllPosts
     useEffect(() => {
@@ -17,41 +15,35 @@ const PostFLow = () => {
                 {
                     headers: { authorization: 'bearer ' + localStorage.getItem('token') },
                     Accept: 'application/json',
-                    'Content-Type':'application/json',
+                    'Content-Type': 'application/json',
 
                 })
                 .then((res) => {
                     setAllPostsDatas(res.data)
-                  //  console.log(allPostsDatas)
+                    //  console.log(allPostsDatas)
                 })
                 .catch((err) => console.log(err));
-        };getAllPosts()
-    },[])
+        }; getAllPosts()
+    }, [])
 
     return (
         <div className='posts-flow-subcontainer'>
             <div className='posts-flow-display'>
-            <EditPost />
+                <EditPost />
                 <ul>
-                    
-                    {allPostsDatas && 
-                    allPostsDatas.reverse() &&
-                    allPostsDatas.map((post) =>{
-                       // console.log('postfrom map : ',post.id)
-                        return <Card post={post} key={post.id}/> 
-                    })
+
+                    {allPostsDatas &&
+                        allPostsDatas.reverse() &&
+                        allPostsDatas.map((post) => {
+                            // console.log('postfrom map : ',post.id)
+                            return <Card post={post} key={post.id} />
+                        })
                     }
                 </ul>
-
- 
-           
-
             </div>
         </div>
     );
 
 }
-
-
 
 export default PostFLow;

@@ -27,8 +27,4 @@ router.delete('/:id/image',auth,postCtrl.deleteImage)
 
 router.post('/:id/like',auth,postCtrl.likePost)
 
-
-
-
-
 module.exports = router;
