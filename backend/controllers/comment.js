@@ -70,18 +70,18 @@ exports.likeComment = (req, res, next) => {
         .then(comment => {
             Voter.findOne({ where: { UserId: req.auth.userId, CommentId: comment.id } })
                 .then((voter) => {
-                    if (voter !== null && req.body.like === 0) {
+                    if (voter !== null /*&& req.body.like === 0*/) {
                         comment.like -= 1;
                         comment.save();
                         Voter.destroy({ where: { UserId: req.auth.userId, CommentId: comment.id } })
-                        res.status(200).json({ message: 'like retiré' });
-                    } else if (voter !== null) {
-                        res.status(400).json({ message: 'already liked' });
+                        res.status(200).json({ message: 'like retiré', like : comment.like });
+                    }/* else if (voter !== null) {
+                        res.status(400).json({ message: 'already liked', like : comment.like });
 
                     } else if (voter === null && req.body.like === 0 || req.body.like < 0 || req.body.like > 1) {
                         comment.like = comment.like;
-                        res.status(200).json({ message: 'already unliked' });
-                    }
+                        res.status(200).json({ message: 'already unliked', like : comment.like });
+                    }*/
                     else {
                         const voter = new Voter();
                         voter.CommentId = comment.id;
@@ -89,7 +89,7 @@ exports.likeComment = (req, res, next) => {
                         voter.save();
                         comment.like += 1;
                         comment.save();
-                        res.status(201).json({ message: 'like added' })
+                        res.status(201).json({ message: 'like added', like : comment.like })
                     }
                 })
                 .catch(err => res.status(500).json({ err }))

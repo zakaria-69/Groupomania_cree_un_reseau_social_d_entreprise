@@ -54,6 +54,8 @@ const Card = (data) => {
           setTitle(post.title);
           //  console.log('title',title);
 
+
+            // get user
             axios.get(`${process.env.REACT_APP_API_URL}api/users/` + post.UserId,
                 {
                     headers: { authorization: 'bearer ' + localStorage.getItem('token') },
@@ -66,7 +68,8 @@ const Card = (data) => {
                     // console.log('userInfos', userInfos);
                 })
                 .catch((err) => console.log(err));
-       
+                
+                //get post 
                 axios.get(`${process.env.REACT_APP_API_URL}api/posts/` +post.id + `/comments`,
                 {
                     headers: { authorization: 'bearer ' + localStorage.getItem('token') },

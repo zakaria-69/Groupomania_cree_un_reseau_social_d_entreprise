@@ -473,6 +473,8 @@ border: solid red 2px;
 width: 80%;
 min-height: 2rem;
 max-height: 10rem;
+max-width: 100%;
+min-width: 70%;
 }
 
 .comment-date-handler{
@@ -542,4 +544,19 @@ max-height: 10rem;
     display: flex;
     justify-content: center;
 }
+
+.update-text-date-container{
+    width: 80%;
+    max-width: 80%;
+
+}
+
+.comment-date-style-handler{
+    display: flex;
+    flex-direction: column;
+    color: #FD2D01;
+    background-color: #fff;
+
+}
+
 

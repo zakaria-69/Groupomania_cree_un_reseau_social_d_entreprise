@@ -56,7 +56,6 @@ const EditPost = () => {
 
                 })
                 .catch((err) => alert(console.log(err)));
-            alert("err")
         }
     }
 

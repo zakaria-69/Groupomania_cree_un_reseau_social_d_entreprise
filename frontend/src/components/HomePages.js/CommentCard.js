@@ -35,8 +35,19 @@ const CommentCard = (data) => {
     //
 
     useEffect(() => {
+        setCreatedAt(comment.createdAt);
+        console.log('createdAt',createdAt)
+       setUpdatedAt(comment.updatedAt);
+        console.log('updatedAt',updatedAt)
+      setUid(comment.UserId);
+        console.log('uid',uid);
+       setCommentId(comment.id);
+        console.log('commentId',commentId);
+       setLike(comment.like);
+        console.log('like',like);
+       setContent(comment.content);
+        console.log('content',content)
 
-        const getUser = async (comment) => {
             console.log('comment from get user', comment)
             axios.get(`${process.env.REACT_APP_API_URL}api/users/` + userId,
                 {
@@ -50,52 +61,11 @@ const CommentCard = (data) => {
                     // console.log('userInfos', userInfos);
                 })
                 .catch((err) => console.log(err));
-
-        };
-        getUser();
-    }, [CommentCard])
-
-    //get all posts
-    useEffect(() => {
-        const getAllPosts = async () => {
-            axios.get(`${process.env.REACT_APP_API_URL}api/posts`,
-                {
-                    headers: {
-                        authorization: 'bearer ' + localStorage.getItem('token'),
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-
-                    }
-                })
-                .then((res) => {
-                    setAllPostsDatas(res.data)
-                    console.log('AllPostsDatas form comment Card', allCommentsDatas)
-                })
-                .catch((err) => console.log(err));
-        }; getAllPosts()
     }, [CommentCard])
 
 
-    //get all comments
-    useEffect(() => {
-        const getAllComments = async () => {
-            axios.get(`${process.env.REACT_APP_API_URL}api/comments`,
-                {
-                    headers: { authorization: 'bearer ' + localStorage.getItem('token') },
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-
-                })
-                .then((res) => {
-                    setAllCommentsDatas(res.data)
-                    // console.log('AllcommentsDatas', allCommentsDatas)
-                })
-                .catch((err) => console.log(err));
-        }; getAllComments()
-    }, [CommentCard])
-
-
-    const handleSubmitComment = async (userInfos) => {
+    const handleUpdateComment = async () => {
+      /*
         // setUniqueCommentId(comment.id)
         // console.log(comment.id);
         //setUserId(userInfos.id);
@@ -113,7 +83,7 @@ const CommentCard = (data) => {
          console.log('like :' + like);
          console.log('userId :' + userId);
          console.log('**END HANDLE UPDATE PROFILE**');
-         //controle si tout les champs vides */
+         //controle si tout les champs vides 
         if (content === '' || comment.CommentId === '' || comment.UserId === '') {
             alert('un des champs est vide')
             setContent('')
@@ -125,10 +95,10 @@ const CommentCard = (data) => {
             alert("un des champs est undefined ")
             setContent('')
 
-        } {
+        } */{
             await axios({
-                method: "post",
-                url: `${process.env.REACT_APP_API_URL}api/comments`,
+                method: "patch",
+                url: `${process.env.REACT_APP_API_URL}api/comments/` + comment.id,
                 data: {
                     content,
                     UserId: comment.UserId,
@@ -143,13 +113,12 @@ const CommentCard = (data) => {
             })
                 .then((res) => {
                     console.log(res)
-                    alert('Post crée avec succès');
+                    alert('Post modifié avec succès');
                     setContent('')
 
                 })
                 .catch((err) => alert(console.log(err)));
             setContent('')
-            // alert("err")
         }
     }
 
@@ -195,97 +164,24 @@ const CommentCard = (data) => {
         };
     }
 
-
-    const handleUpdateOneComment = () => {
-        if (userId == comment.UserId || userInfos.isAdmin) {
-            const updateOneComment = async () => {
-                /* if(title || text || image ){
-                     console.log('**START HANDLE UPDATE POST**');
-                     console.log('title :', title);
-                     console.log('post title :', post.title);
-                     console.log('image :', image);
-                     console.log('post image :' , post.imageUrl);
-                     console.log(' text :'  , text);
-                     // console.log('lastName :' + lastName);
-                     // console.log('userName :' + userName);
-                     // console.log('bio :' + bio);
-                     console.log('**END HANDLE UPDATE POST**');*/
-                await axios({
-                    method: 'patch',
-                    url: `${process.env.REACT_APP_API_URL}api/comments/` + comment.id,
-                    data: {
-                        content,
-                        like
-                    },
-                    headers: {
-                        authorization: 'bearer ' + localStorage.getItem('token'),
-                        Accept: 'application/json',
-                        'Content-Type': 'multipart/form-data',
-                    }
-                })
-                    .then((res) => {
-                        console.log('title 4', content)
-                        setAllCommentsDatas(res.data)
-                        alert('vôtre post a été correctement modifié')
-                        setIsUpdated(false)
-                        // window.location.reload();
-                        console.log('AllCommentsDatas from patch post', res)
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                        alert("Désolé!Vous n'êtes pas autorisé à modifié ce post!")
-                    })
-                /*}else{
-            alert('rien à modifié')
-        }*/
-            }; updateOneComment();
-        } else {
-            alert("Désolé!Vous n'êtes pas autorisé à modifié ce post!")
-        }
-    }
-
     const handleLikeComment = async () => {
         // try{
-        if (/*userId !== post.userId */  /*userId !== post.UserId &&*/ isLiked === false) {
-            console.log('veut liker')
-            //console.log('userinfos Id = : id du user connecter',userInfos.id)
-            console.log('userinfos Id = : id du user connecter from ls', userId)
-            console.log('post like before = nombre de like :', comment.like)
-            console.log(" const like nombre de like ", like)
-            console.log('post User id = : id du post a liker', comment.UserId)
-            console.log('post Id = : id du post a liker', comment.id)
-            console.log('post title = : title du post a liker', comment.title)
-            setIsLiked(true);
-            comment.like += 1;
-            console.log('comment like', comment.like)
-
-            // console.log(like)
-        } else if (/*userId === post.UserId &&*/ isLiked === true) {
-            comment.like -= 1;
-            console.log('comment like', comment.like)
-            setIsLiked(false);
-
-        } {
-
-
             await axios({
                 method: "post",
                 url: `${process.env.REACT_APP_API_URL}api/comments/` + comment.id + '/like',
-                data: {
-                    like: comment.like,
-                    UserId: userId
-                },
                 headers: {
                     authorization: 'bearer ' + localStorage.getItem('token'),
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
-
-                }
+                },
             })
                 .then((res) => {
                     //JSON.stringify(res.data)
-                    setLike(res.data.like)
-                    console.log('commentLikeNumber', res)
+                    setLike(res.data.like);
+                    console.log('res data like', res.data.like)
+                    
+                    console.log('postlikeNumber', like)
+                    console.log('res data like post',res)
                     alert("vôtre choix a été pris en compte")
                 })
                 .catch((err) => console.log(err));
@@ -294,39 +190,21 @@ const CommentCard = (data) => {
         /*catch(err){
         console.log(err)
         }*/
-    }
 
-
-    //console.log('allcommentsDatas',allCommentsDatas)
-
-    useEffect(() => {
-        const handleCommentCardDisplay = () => {
-            // console.log(allPostsDatas[0].UserId)
-            //setCreatedAt(comment.createdAt);
-            //  console.log('createdAt',createdAt)
-            // setUpdatedAt(comment.updatedAt);
-            //  console.log('updatedAt',updatedAt)
-            //setUid(comment.UserId);
-            //  console.log('uid',uid);
-            // setCommentId(comment.id);
-            //  console.log('commentId',commentID);
-            // setLike(comment.like);
-            //  console.log('like',like);
-            // setContent(comment.content);
-            //  console.log('content',content)
-
-        }; return handleCommentCardDisplay();
-    }, [])
-
-    const handleRelativeComments = (props) => {
-        console.log(props)
-        if (comment.UserId) {
-            console.log('allcommentsData relative', allCommentsDatas)
-
+        const timeStampHandler = (num) => {
+            let options = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                weekday: 'long',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            };
+            let timeStamp = Date.parse(num);
+            let date = new Date(timeStamp).toLocaleDateString('fr-FR', options)
+            return date.toString();
         }
-    }
-
-
 
     return (
 
@@ -342,6 +220,7 @@ const CommentCard = (data) => {
                     </input>*/}
                 <div className='display-one-comment' >
                     {isUpdated ? (
+                        <div className='update-text-date-container'>
                         <textarea type='text'
                             name='update-comment'
                             id='update-comment-content'
@@ -351,8 +230,14 @@ const CommentCard = (data) => {
 
                         >
                         </textarea>
+                        <div className='comment-date-style-handler'>
+                    <span className='creation-date'>crée le :{timeStampHandler(createdAt)}</span>
+                    <span className='udpated-date'>modifié le :{timeStampHandler(updatedAt)}</span>
+                </div>
+
+                        </div>
                     ) : (
-                        <p>{comment.content}{comment.id} afficher les coms</p>
+                        <p>{comment.content} :id =  {comment.id}</p>
 
                     )}
 
@@ -378,27 +263,27 @@ const CommentCard = (data) => {
                         </span>
                        
                             <li>
-                            <button title='comment like'
+                            <button title='comment-like'
                             id='comment-like'
                                 onClick={handleLikeComment}>
                                 <i class="fa-regular fa-heart">
-                                    <span id={comment.like ? 'comment-like-number' : 'no-likes'}>
-                                        {comment.like}
+                                    <span id={like ? 'comment-like-number' : 'no-likes'}>
+                                        {like}
                                     </span>
                                 </i>
                             </button>
-                            </li>
+                            </li>                                                                            
                        
                     </div>
                 </div>
             </div>
             {isUpdated ? (
                 <div className='submit-comment'>
-                    <input type='submit' id='submit-comment' value='modifier' onClick={handleSubmitComment}>
+                    <input type='submit' id='submit-comment' value='modifier' onClick={handleUpdateComment}>
                     </input>
                 </div>) : (
                 <div className='submit-comment' style={{ display: 'none' }}>
-                    <input type='submit' id='submit-comment' value='modifier' onClick={handleSubmitComment}></input>
+                    <input type='submit' id='submit-comment' value='modifier' onClick={handleUpdateComment}></input>
                 </div>)}
             <ul>
                 {/*}   {allCommentsDatas &&
