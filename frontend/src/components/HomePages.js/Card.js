@@ -28,6 +28,11 @@ const Card = (data) => {
 
     const post = data.post;
     //console.log('data.post',post)
+    const comment = data.comment;
+   // console.log('data comment from post', comment)
+   // console.log('allcommentsdatas from post' , allCommentsDatas)
+
+
 
     
     
@@ -79,11 +84,18 @@ const Card = (data) => {
                 })
                 .then((res) => {
                     setAllCommentsDatas(res.data)
-                    console.log('AllcommentsDatas', allCommentsDatas)
+                    //console.log('AllcommentsDatas', allCommentsDatas)
                 })
                 .catch((err) => console.log(err));
     }
 , [])
+
+/*const getComments = () => {
+    for (let i;i< allCommentsDatas.length;i ++){
+        setCommentId(allCommentsDatas[i].CommentId);
+        console.log('commentId',commentId)
+    }
+}*/
 
     //fonction de suppression de post 
     const handleDeletePost = () => {
@@ -322,7 +334,7 @@ const Card = (data) => {
     const handleSubmitComment = async () => {
     console.log('com content',content)
    console.log('userinfosId',userId)
-   console.log('commentId' , commentId)
+   console.log('commentId before axios' , commentId)
    
    {
     await axios({
@@ -331,7 +343,7 @@ const Card = (data) => {
         data: {
             content,
             UserId: userId,
-            commentId 
+            CommentId :commentId
         },
         headers: {
             authorization: 'bearer ' + localStorage.getItem('token'),
@@ -342,7 +354,7 @@ const Card = (data) => {
     })
         .then((res) => {
             console.log(res)
-            alert('Post crée avec succès');
+            alert('Commentaire crée avec succès');
             setContent('')
 
         })
@@ -566,6 +578,9 @@ const Card = (data) => {
                                     // comment.id === comment.UserId &&
                                     allCommentsDatas.reverse() &&
                                     allCommentsDatas.map((comment) => {
+                                       commentId =comment.CommentId
+                                     // setCommentId(commentId)
+                                        console.log('commentId from map',commentId)
                                         console.log('postfrom map : ', comment.id)
                                         return <CommentCard comment={comment} key={comment.id} />
 

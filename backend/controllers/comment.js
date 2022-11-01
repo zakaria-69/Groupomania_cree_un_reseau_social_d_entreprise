@@ -75,13 +75,7 @@ exports.likeComment = (req, res, next) => {
                         comment.save();
                         Voter.destroy({ where: { UserId: req.auth.userId, CommentId: comment.id } })
                         res.status(200).json({ message: 'like retiré', like : comment.like });
-                    }/* else if (voter !== null) {
-                        res.status(400).json({ message: 'already liked', like : comment.like });
-
-                    } else if (voter === null && req.body.like === 0 || req.body.like < 0 || req.body.like > 1) {
-                        comment.like = comment.like;
-                        res.status(200).json({ message: 'already unliked', like : comment.like });
-                    }*/
+                    }
                     else {
                         const voter = new Voter();
                         voter.CommentId = comment.id;
