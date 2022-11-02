@@ -24,6 +24,7 @@
     margin: 0 auto;
     width: 100%;
  }
+ 
 
 .login-nav {
     width: 5%;
@@ -102,15 +103,11 @@
     .logo{
         height: 8rem;
     }
-
-    .logo img{
-        width: 90%;
-        height: auto;
-    }
  
     .nav-container{
         height: 19rem;
     }
+    
 
    
 
@@ -148,7 +145,7 @@
         height: 19rem;
     }
    
-    .logo img{
+       .logo img{
         width: 90%;
         height: auto;
     }
