@@ -3,7 +3,6 @@
 ● Tertiaire : #4E5166*/
 
 .posts-flow-container{
-    border: solid red 2px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -13,7 +12,6 @@
 }
 
 .posts-flow-subcontainer{
-    border: solid black 2px;
     width: 80%;
     display: flex;
     align-items: center;
@@ -29,7 +27,6 @@ textarea{
 }
 
 .posts-flow-display{
-    border: solid green 2px;
     width: 80%;
    
 }
@@ -183,7 +180,7 @@ textarea{
 /*Gestion body Card*/
 
 .body-card{
-    height: 15rem;
+    height: 22rem;
     width: 80%;
     margin: 2% auto;
     border: double #FD2D01 3px;
@@ -556,6 +553,40 @@ min-width: 70%;
     flex-direction: column;
     color: #FD2D01;
     background-color: #fff;
+
+}
+
+
+/*queries tablette*/
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+.posts-flow-display{
+    width: 100%;
+}
+
+}
+
+/*queries smartphone*/
+
+@media screen and (max-width: 768px) {
+    .posts-flow-subcontainer{
+        width: 100%;
+    }
+
+    .posts-flow-display{
+        width: 100%;
+    }
+
+
+    .body-card{
+        height: 15rem;
+        width: 100%;
+    }
+    .post-imageUrl{
+        height: 100%;
+        width: 100%;
+    }
 
 }
 

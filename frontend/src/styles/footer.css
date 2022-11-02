@@ -62,3 +62,74 @@ footer h4 {
     object-fit: cover;
 
 }
+
+/*queries tablette*/
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+    
+
+    footer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer ul{
+        margin: 1% auto;
+        
+    }
+
+    footer h4{
+        padding: 1%;
+        text-decoration: none;
+        border-bottom: double #FD2D01 3px;
+    }
+
+    footer li{
+        text-decoration: underline #FFD7D7;
+        padding: 0;
+    }
+
+    footer a:active{
+        color: #FFD7D7;
+    }
+
+    .footer-reseaux li,.footer-nav li {     
+        padding: 0;
+    }
+
+}
+
+/*queries smartphone*/
+
+@media screen and (max-width: 768px) {
+    footer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer ul{
+        margin: 1% auto;
+        width: 100%;
+        
+    }
+
+    footer h4{
+        border-bottom: double #FD2D01 3px;
+        padding: 1%;
+        text-decoration: none;
+    }
+
+    .footer-reseaux li,.footer-nav li {     
+        padding: 0;
+        margin: 1%;
+    }
+
+    footer li{
+        margin: 0;
+    }
+
+    footer a:active{
+        color: #FFD7D7;
+    }
+}

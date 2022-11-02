@@ -349,3 +349,49 @@ li.active-btn:active {
     text-decoration: underline #FD2D01;
     font-size: 1.3rem;
 }
+
+
+/*queries tablette*/
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+    .full-card{
+        display: flex;
+        flex-direction: column;
+    }
+    .left-card{
+        width: 100%;
+    }
+   
+    .right-card{
+        width: 100%;
+
+    }
+}
+
+/*queries smartphone*/
+
+@media screen and (max-width: 768px) {
+
+    .full-card{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .profil-container h1{
+        width: 100%;
+        font-size: x-large;
+        text-align: center;
+        font-weight: 900;
+    }
+    .left-card{
+        width: 100%;
+        border: solid black 3px;
+
+    }
+   
+    .right-card{
+        width: 100%;
+    }
+}

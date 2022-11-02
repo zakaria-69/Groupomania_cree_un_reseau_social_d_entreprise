@@ -8,7 +8,6 @@
 html {
     margin: 0;
     padding: 0%;
-    border: solid yellow 2px;
 }
 
 body {
@@ -177,8 +176,19 @@ form {
 
 /*queries tablette*/
 
-@media screen and (min-width: 768px) and (max-width: 992px) {}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .connection-form{
+        margin: 3% auto;
+        width: 80%;
+    }
+    
+}
 
 /*queries smartphone*/
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+    .connection-form{
+        margin: 3% auto;
+        width: 100%;
+    }
+}
