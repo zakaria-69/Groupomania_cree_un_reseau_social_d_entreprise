@@ -180,17 +180,19 @@ textarea{
 /*Gestion body Card*/
 
 .body-card{
-    height: 22rem;
+    height: 25rem;
     width: 80%;
     margin: 2% auto;
-    border: double #FD2D01 3px;
-   
-
+    border: dotted #FD2D01 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .post-imageUrl{
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 100% ;
     object-fit: cover;
 }
 
@@ -248,36 +250,6 @@ textarea{
 .comments{
     border: solid yellow 3px;
 }
-
-/*.home-page-container{
-    border: solid black 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-}
-
-.posts-flow-container{
-    border: solid red 2px;
-    width:100vw;
-    height:15rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-}
-
-.posts-flow-display{
-    border: solid green 2px;
-    width:100vw;
-    height:10rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}*/
-
 
 .title-btn-edit-container{
     border:double #FD2D01 3px;
@@ -461,9 +433,6 @@ textarea{
     padding: 1%;
     text-align: center;
 }
-.comment-edit-and-display-container{
-    border: solid black 4px;
-}
 
 #update-comment-content{
 border: solid red 2px;
@@ -493,34 +462,11 @@ min-width: 70%;
 }
 
 .valid-edit-comment{
-    border: solid black 3px;
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
-
-/*#admin-display{
-    border: solid black 20px; 
-    display: flex;
-}*/
-
-/*#comment-like-number{
-    border:solid red 2px;
-    width: 1.2rem;
-    height: 1.2rem;
-    transform: translate(-30%,50%);
-    color: #FFD7D7;
-    font-weight: 900;
-    border-radius: 50%;
-    border: solid #FD2D01 1px;
-    background-color: #4E5166;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-
-}*/
 
 #no-likes{
     display: none;
