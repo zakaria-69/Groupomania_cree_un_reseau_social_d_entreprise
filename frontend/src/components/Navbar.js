@@ -13,9 +13,9 @@ const Navbar = () => {
     }
     {
         return (
-            <nav>
+            <nav id='nav-header'>
                 <div className='nav-container'>
-                    <div className='logo'>
+                    <div className='logo-container'>
                         <NavLink exact to='/'>
                             <div className='logo'>
                                 <img src='../../img/groupo-monochrome-orange.png' alt='logo-site' className='orange-groupo-nav'>

@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from './Card';
-import EditComment from './EditComment';
 
 const CommentCard = (data) => {
 

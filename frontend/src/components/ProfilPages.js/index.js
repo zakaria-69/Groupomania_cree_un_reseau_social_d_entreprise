@@ -75,13 +75,15 @@ const ProfilPages = () => {
                         </div>
                         <div className='right-card-bottom'>
                             <div className='admin'>
-                                <li>
-                                    <a id='profil'
-                                        className='contact-admin'
-                                        href='mailto:groupoAdmin@groupo.com'>
-                                        Contacter un admin
-                                    </a>
-                                </li>
+                                <ul>
+                                    <li>
+                                        <a id='profil'
+                                            className='contact-admin'
+                                            href='mailto:groupoAdmin@groupo.com'>
+                                            Contacter un admin
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

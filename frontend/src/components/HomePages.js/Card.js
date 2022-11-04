@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import CommentCard from './CommentCard';
-import EditComment from './EditComment';
 
 const Card = (data) => {
     const [allCommentsDatas, setAllCommentsDatas] = useState('');
@@ -32,7 +31,39 @@ const Card = (data) => {
    // console.log('data comment from post', comment)
    // console.log('allcommentsdatas from post' , allCommentsDatas)
 
+   const handleSubmitComment = async () => {
+    console.log('com content',content)
+   console.log('userinfosId',userId)
+   console.log('commentId before axios' , commentId)
+   
+   {
+    await axios({
+        method: "post",
+        url: `${process.env.REACT_APP_API_URL}api/comments`,
+        data: {
+            content,
+            UserId: userId,
+            CommentId :commentId
+        },
+        headers: {
+            authorization: 'bearer ' + localStorage.getItem('token'),
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
 
+        }
+    })
+        .then((res) => {
+            console.log(res)
+            alert('Commentaire crée avec succès');
+            setContent('')
+
+        })
+        .catch((err) => alert(console.log(err)));
+    setContent('')
+    // alert("err")
+    
+}
+ }
 
     
     
@@ -331,72 +362,8 @@ const Card = (data) => {
     }*/
 
 
-    const handleSubmitComment = async () => {
-    console.log('com content',content)
-   console.log('userinfosId',userId)
-   console.log('commentId before axios' , commentId)
    
-   {
-    await axios({
-        method: "post",
-        url: `${process.env.REACT_APP_API_URL}api/comments`,
-        data: {
-            content,
-            UserId: userId,
-            CommentId :commentId
-        },
-        headers: {
-            authorization: 'bearer ' + localStorage.getItem('token'),
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-
-        }
-    })
-        .then((res) => {
-            console.log(res)
-            alert('Commentaire crée avec succès');
-            setContent('')
-
-        })
-        .catch((err) => alert(console.log(err)));
-    setContent('')
-    // alert("err")
-}
-
-    /* if(content === '' ||  comment.CommentId ==='' || comment.UserId === ''){
-         alert('un des champs est vide')
-         setContent('')
-     }else if( content === null ||userId ===null || commentId === null){
-         alert("un des champs n'est pas bon ")
-         setContent('')
-     }else if( content === undefined ||comment.CommentId ===undefined || commentId === undefined){
-         alert("un des champs est undefined ")
-         setContent('')
-     }{
-         await axios({
-             method :"post",
-             url:`${process.env.REACT_APP_API_URL}api/comments`,
-                  data: {
-                     content,
-                     UserId :comment.UserId,
-                     CommentId : comment.CommentId
-                 },
-                     headers: { authorization: 'bearer ' + localStorage.getItem('token') ,
-                     Accept: 'application/json',
-                     'Content-Type': 'application/json'
  
-                 }})
-                 .then((res) => {
-                     console.log(res)
-                     alert('Post crée avec succès');
-                     setContent('')
-                     
-                 })
-                 .catch((err) =>alert( console.log(err)));
-                 setContent('');
-                // alert("err")
-     }*/
- }
 
     return (
         <div className='card'>
@@ -570,8 +537,6 @@ const Card = (data) => {
         </div>
         {/*</form>  */}
             </div>
-                              
-
                             </div>
                             <ul id='display-all-relative-comments'>
                                 {allCommentsDatas &&
