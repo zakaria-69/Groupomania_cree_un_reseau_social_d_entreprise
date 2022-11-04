@@ -152,7 +152,8 @@ const CommentCard = (data) => {
                                 </span>
                             </div>
                         </div>
-                    ) : (
+                    ) : 
+                    (
                         <p>{comment.content} :id =  {comment.id}</p>
                     )}
                     <div className='comment-actions'>
