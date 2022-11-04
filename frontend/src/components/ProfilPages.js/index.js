@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import UpdateProfil from './UpdateProfil';
 import DeleteProfil from './DeleteProfil';
 import CurrentProfil from './CurrentProfil';

@@ -1,5 +1,4 @@
-import React, { Component, useContext } from 'react';
-import UpdateProfil from '../components/ProfilPages.js/UpdateProfil';
+import React from 'react';
 import ProfilPages from '../components/ProfilPages.js';
 
 const Profil = () => {

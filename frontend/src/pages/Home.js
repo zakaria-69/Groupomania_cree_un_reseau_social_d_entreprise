@@ -1,5 +1,4 @@
-import React, { Component, useContext } from 'react';
-import Footer from '../components/Footer';
+import React from 'react';
 import HomePages from '../components/HomePages.js/index.js'
 import HomeCss from '../styles/home.css'
 

@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+Groupomania
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+P7 parcour développeur Web Openclassrooms 
+Créez un réseaux social d'entreprise
 
-## Available Scripts
+________________________________________________
+Informations globales sur les technologies utilisées sur ce projet:
+React.js
+Babel
+Node.js
+Express
+Mysql 
+Sequelize
 
-In the project directory, you can run:
+Afin de pouvoir lancer le projet veuillez suivre les étapes ci-dessous :
 
-### `npm start`
+procurez-vous :
+Node.js
+REact.js
+MySQL
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+Installation :
+1 : Clonez le repository
+2 : Installez les dépendances pour le backend et le frontend.
+Pour ce faire ,entrez la commande 'cd backend ' pour vous rendre dans le dossier backend,puis lancer la commande "npm install" afin de bénéficier de toutes les dépendances du backend
+nécessaire au bon fonctionnement de ce projet.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A partir d'un nouvel invit de commande ou en entrant ' cd .. ' dans le même invit de commande,
+rendez-vous à nouveau à la racine du projet puis entrez la commande 'cd frontend' afin d'entrer dans le dossier frontend.
+Lancez la commande 'npm install' pour recevoir les dépendances du frontend et pouvoir bénéficier de toutes les dépendances nécessaire au bon fonctionnement de la partie client de ce projet.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Environnement :
+Pour pouvoir lancer le projet il faudra encore une étape.
+Créez un fichier .env dans le backend avec les nom de variables d'environnement suivants :
+DB_USERNAME=
+DB_PASSWORD=
+DB_NAME=
+DB_HOST=
+PORT =
+DB_DIALECT = 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+puis créez un fichier .env dans le frontend avec le nom de variable d'environnement suivant :
+REACT_APP_API_URL =
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+(Pour le mentor évaluateur ces fichiers seront déjà présent dans le projet complet sous format .zip afin de permettre un accès administrateur à nôtre base de données).
 
-### `npm run eject`
+Lancement du projet : 
+BACKEND
+Une fois les dépendances acquises ,afin de lancer le projet ,rendez vous dans le dossier backend dans vôtre console (nouvel invit de commande + 'cd backend'),à partir de ce dossier
+entrez la commande nodemon server afin de bénéficier du rafraichissement automatique en temps réel.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+le backend fonctionnera sur le port 5000 ou à l'adresse ' http://localhost:5000/' par défaut.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+FRONTEND
+Une fois les dépendances du front acquises,afin de lancer le projet,rendez vous dans le dossier frontend dans vôtre console(nouvel invit de commande + 'cd frontend'),à partir de ce dossier entrez la commande npm start.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+le frontend fonctionnera sur le port 3000 ou à l'adresse ' http://localhost:3000/' par défaut.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Base de données : 
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

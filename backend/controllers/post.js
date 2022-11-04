@@ -93,7 +93,9 @@ exports.deleteOnePost = (req, res, next) => {
 exports.deleteImage = (req, res, next) => {
     Post.findOne({ where: { id: req.params.id } })
         .then(post => {
-            if (post.UserId != req.auth.userId) {
+            User.findOne({ where: { id: req.auth.userId } })
+            .then((user) =>{
+            if (post.UserId != req.auth.userId && user.isAdmin !== true) {
                 res.status(401).json({ message: 'not authorized' });
             } else {
                 const filename = post.imageUrl.split("/images/")[1];
@@ -106,9 +108,8 @@ exports.deleteImage = (req, res, next) => {
                 });
             }
         })
-        .catch(error => {
-            res.status(500).json({ error });
-        })
+})
+.catch(err => res.status(500).json(err))
 }
 
 //like systeme 

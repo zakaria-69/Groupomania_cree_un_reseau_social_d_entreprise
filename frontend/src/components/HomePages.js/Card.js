@@ -92,7 +92,7 @@ const Card = (data) => {
 
 
             // get user
-            axios.get(`${process.env.REACT_APP_API_URL}api/users/` + post.UserId,
+            axios.get(`${process.env.REACT_APP_API_URL}api/users/` + userId,//post.UserId,
                 {
                     headers: { authorization: 'bearer ' + localStorage.getItem('token') },
                     Accept: 'application/json',
@@ -168,6 +168,9 @@ const Card = (data) => {
     //fonction de modification de post 
     const handleUpdateOnePost = () => {
         if (userInfos.id === post.UserId || userInfos.isAdmin) {
+            console.log('userInfos.id',userInfos.id)
+            console.log('post.UserId',post.UserId)
+            console.log(' userInfos.isAdmin', userInfos.isAdmin)
             const updateOnePost = async () => {
                 if (title || text || image) {
                     console.log('**START HANDLE UPDATE POST**');
@@ -218,9 +221,12 @@ const Card = (data) => {
 
 
     //fonction de suppression d'image sur un post
-    const handleDeletePostPicture = () => {
-        if (userId == post.UserId || userInfos.isAdmin && image) {
-            const deleteOnePostPicture = async () => {
+    const handleDeletePostPicture =async () => {
+        if (userInfos.id === post.UserId || userInfos.isAdmin===true) {
+            console.log('userInfos.id',userInfos)
+            console.log('post.UserId',post.UserId)
+            console.log(' userInfos.isAdmin', userInfos.isAdmin)
+           // const deleteOnePostPicture = async () => {
                 await axios.delete(`${process.env.REACT_APP_API_URL}api/posts/` + post.id + `/image`,
                     {
                         headers: {
@@ -239,10 +245,13 @@ const Card = (data) => {
                     });
 
 
-            }; deleteOnePostPicture()
+        //    }; deleteOnePostPicture()
 
         } else {
             alert(`Aucune image à supprimer ou vous n'avez pas les droits.`)
+            console.log('userInfos.id',userInfos)
+            console.log('post.UserId',post.UserId)
+            console.log(' userInfos.isAdmin', userInfos.isAdmin)
 
         };
 
