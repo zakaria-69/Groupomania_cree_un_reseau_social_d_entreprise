@@ -477,8 +477,7 @@ min-width: 70%;
     content: '';
 }
 
-.fa-heart{
-   
+.fa-heart{  
     max-height: 100%;
 }
 
@@ -491,7 +490,6 @@ min-width: 70%;
 .update-text-date-container{
     width: 80%;
     max-width: 80%;
-
 }
 
 .comment-date-style-handler{
@@ -499,22 +497,17 @@ min-width: 70%;
     flex-direction: column;
     color: #FD2D01;
     background-color: #fff;
-
 }
 
-
 /*queries tablette*/
-
 @media screen and (min-width: 768px) and (max-width: 992px) {
 
 .posts-flow-display{
     width: 100%;
 }
-
 }
 
 /*queries smartphone*/
-
 @media screen and (max-width: 768px) {
     .posts-flow-subcontainer{
         width: 100%;
@@ -524,7 +517,6 @@ min-width: 70%;
         width: 100%;
     }
 
-
     .body-card{
         height: 15rem;
         width: 100%;
@@ -533,7 +525,6 @@ min-width: 70%;
         height: 100%;
         width: 100%;
     }
-
 }
 
 

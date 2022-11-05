@@ -16,7 +16,7 @@ const Navbar = () => {
             <nav id='nav-header'>
                 <div className='nav-container'>
                     <div className='logo-container'>
-                        <NavLink exact to='/'>
+                        <NavLink  to='/'>
                             <div className='logo'>
                                 <img src='../../img/groupo-monochrome-orange.png' alt='logo-site' className='orange-groupo-nav'>
                                 </img>
@@ -31,9 +31,9 @@ const Navbar = () => {
                     <div className='login-nav'>
                         <ul>
                             <li className='nav-login  redirect'>
-                                <NavLink exact to='/login'>
+                                <NavLink to='/login'>
                                     <div className='nav-main' title='login'>
-                                        <i class="fa-solid fa-right-to-bracket">
+                                        <i className="fa-solid fa-right-to-bracket">
                                         </i>
                                     </div>
                                 </NavLink>
@@ -42,10 +42,10 @@ const Navbar = () => {
                         {/*if user authentified else redirect to login */}
                         <ul>
                             <li className='nav-profil  redirect'>
-                                <NavLink exact to='/profil'>
+                                <NavLink to='/profil'>
                                     <div className='nav-user'
                                         title='profil'>
-                                        <i class="fa-solid fa-user">
+                                        <i className="fa-solid fa-user">
                                         </i>
                                     </div>
                                 </NavLink>
@@ -54,10 +54,10 @@ const Navbar = () => {
                         {/*if user authentified  else redirect to login*/}
                         <ul>
                             <li className='nav-home  redirect'>
-                                <NavLink exact to='/'>
+                                <NavLink  to='/'>
                                     <div className='nav-home'
                                         title='home'>
-                                        <i class="fa-solid fa-house">
+                                        <i className="fa-solid fa-house">
                                         </i>
                                     </div>
                                 </NavLink>
@@ -67,11 +67,11 @@ const Navbar = () => {
                         {token ? (
                             <ul>
                                 <li className='nav-logout  redirect'>
-                                    <NavLink exact to='/login'>
+                                    <NavLink to='/login'>
                                         <div className='nav-logout'
                                             title='logout'
                                             onClick={logout}>
-                                            <i class="fa-solid fa-door-closed">
+                                            <i className="fa-solid fa-door-closed">
                                             </i>
                                         </div>
                                     </NavLink>
@@ -79,10 +79,10 @@ const Navbar = () => {
                             </ul>) : ({/*si user pas authentifier masquer la div logout dans la nav*/ },
                                 <ul>
                                     <li className='nav-logout  redirect'>
-                                        <NavLink exact to='/login'>
+                                        <NavLink to='/login'>
                                             <div className='nav-logout'
                                                 style={{ display: 'none' }}>
-                                                <i class="fa-solid fa-door-closed">
+                                                <i className="fa-solid fa-door-closed">
                                                 </i>
                                             </div>
                                         </NavLink>

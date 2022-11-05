@@ -7,8 +7,7 @@ import NotFound from '../../pages/NotFound';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 
-class index extends Component {
-    render() {
+const index = () => {
         return (
             <Router>
                 <Navbar />
@@ -22,6 +21,6 @@ class index extends Component {
             </Router>
         );
     }
-}
+
 
 export default index;

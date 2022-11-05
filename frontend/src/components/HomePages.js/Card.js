@@ -67,7 +67,6 @@ const Card = (data) => {
                 })
                 .then((res) => {
                     setUserInfos(res.data)
-                    // console.log('userInfos', userInfos);
                 })
                 .catch((err) => console.log(err));
                 
@@ -80,7 +79,6 @@ const Card = (data) => {
                 })
                 .then((res) => {
                     setAllCommentsDatas(res.data)
-                    //console.log('AllcommentsDatas', allCommentsDatas)
                 })
                 .catch((err) => console.log(err));
     }
@@ -246,11 +244,11 @@ const Card = (data) => {
                     )}
                 </div>
                 {isUpdated === false &&
-                 <div class="textContent-card" >
+                 <div className="textContent-card" >
                     {text}
                     </div>}
                 {isUpdated && 
-                <div class="textContent-card" >
+                <div className="textContent-card" >
                     <label htmlFor='text-update'
                      className='text-update'>
                         modification du text
@@ -294,7 +292,7 @@ const Card = (data) => {
                             <buton title='post-delete-image'
                              className='delete-image-post'
                               onClick={handleDeletePostPicture}>
-                                <i class="fa-solid fa-xmark fa-lg"
+                                <i className="fa-solid fa-xmark fa-lg"
                                  id='fa-x-mark-post'>
                                     </i>
                                     </buton>
@@ -328,20 +326,20 @@ const Card = (data) => {
                          onClick={() => {
                             if (window.confirm('voulez vous vraiment supprimer vôtre publication?'))
                              { handleDeletePost(); }
-                        }}><i class="fa-regular fa-trash-can">
+                        }}><i className="fa-regular fa-trash-can">
                             </i>
                         </button>
                         </li>
                         <li>
                             <button title='update'
                                 onClick={() => setIsUpdated(!isUpdated)}>
-                                <i class="fa-regular fa-pen-to-square"></i>
+                                <i className="fa-regular fa-pen-to-square"></i>
                             </button>
                         </li>                        
                         <li id='like-item'>
                             <button title='like'
                              onClick={handleLikePost}>
-                                <i class="fa-regular fa-heart">
+                                <i className="fa-regular fa-heart">
                                     <span id={like ? 'post-like-number' : 'no-likes'}>
                                         {like}
                                     </span>
@@ -360,7 +358,7 @@ const Card = (data) => {
                         <button title='comment'
                          className='toggle-comment-button'
                           onClick={() => setDisplayComments(!displayComments)}>
-                            <i class="fa-regular fa-comment">
+                            <i className="fa-regular fa-comment">
                             </i>
                         </button>
                     </span>

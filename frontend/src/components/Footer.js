@@ -36,7 +36,7 @@ const Footer = () => {
                     </a>
                 </li>
             </ul>
-            <ul class='footer-nav'>
+            <ul className='footer-nav'>
                 <h4>Navigation</h4>
                 <li className="footer-ancer">
                     <a href='/login'>

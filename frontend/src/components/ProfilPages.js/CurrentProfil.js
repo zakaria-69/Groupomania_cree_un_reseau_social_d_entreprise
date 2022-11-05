@@ -56,7 +56,7 @@ const CurrentProfil = () => {
                     <img id='update-profilPicture' src={image} alt='user-profil-picture' />
                     <p>supprimer l'image</p>
                     <buton title='delete-image' onClick={handleDeleteProfilPicture}>
-                        <i class="fa-solid fa-xmark fa-lg">
+                        <i className="fa-solid fa-xmark fa-lg">
                         </i>
                     </buton>
                 </div>) :

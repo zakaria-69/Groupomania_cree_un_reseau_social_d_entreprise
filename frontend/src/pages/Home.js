@@ -6,7 +6,7 @@ const Home = () => {
     const token = localStorage.getItem('token');
 
     return (
-        <div class='home-page-container'>
+        <div className='home-page-container'>
             {/*si authentifier accede a home*/}
             {token ? (
                 //<h1>Hello depuis Home</h1>,

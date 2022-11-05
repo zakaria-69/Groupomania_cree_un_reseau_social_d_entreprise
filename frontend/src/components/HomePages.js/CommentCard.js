@@ -36,7 +36,7 @@ const CommentCard = (data) => {
             .catch((err) => console.log(err));
     }, [CommentCard])
 
-
+    //fonction de gestion de modification de commentaires
     const handleUpdateComment = async () => {
         {
             await axios({
@@ -92,6 +92,7 @@ const CommentCard = (data) => {
         };
     }
 
+    //fonction de gestion des likes sur les commentaires 
     const handleLikeComment = async () => {
         await axios({
             method: "post",
@@ -113,6 +114,7 @@ const CommentCard = (data) => {
             .catch((err) => console.log(err));
     }
 
+    //fonction de gestion des timestamps
     const timeStampHandler = (num) => {
         let options = {
             hour: '2-digit',
@@ -130,7 +132,6 @@ const CommentCard = (data) => {
 
     return (
         <div className='comments-container'>
-
             <div className=' comments-subContainer'>
                 <div className='display-one-comment' >
                     {isUpdated ? (
@@ -161,7 +162,7 @@ const CommentCard = (data) => {
                             <li>
                                 <button title='trash'
                                     onClick={handleDeleteComment}>
-                                    <i class="fa-regular fa-trash-can">
+                                    <i className="fa-regular fa-trash-can">
                                     </i>
                                 </button>
                             </li>
@@ -170,7 +171,7 @@ const CommentCard = (data) => {
                             <li>
                                 <button title='comment update'
                                     onClick={() => setIsUpdated(!isUpdated)}>
-                                    <i class="fa-regular fa-pen-to-square">
+                                    <i className="fa-regular fa-pen-to-square">
                                     </i>
                                 </button>
                             </li>
@@ -179,7 +180,7 @@ const CommentCard = (data) => {
                             <button title='comment-like'
                                 id='comment-like'
                                 onClick={handleLikeComment}>
-                                <i class="fa-regular fa-heart">
+                                <i className="fa-regular fa-heart">
                                     <span id={like ? 'comment-like-number' : 'no-likes'}>
                                         {like}
                                     </span>
