@@ -41,6 +41,7 @@ DB_NAME=
 DB_HOST=
 PORT =
 DB_DIALECT = 
+TOKEN_KEY_SECRET = 
 
 puis créez un fichier .env dans le frontend avec le nom de variable d'environnement suivant :
 REACT_APP_API_URL =
