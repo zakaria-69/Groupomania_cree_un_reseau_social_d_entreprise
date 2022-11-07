@@ -247,10 +247,6 @@ textarea{
 }
 
 
-.comments{
-    border: solid yellow 3px;
-}
-
 .title-btn-edit-container{
     border:double #FD2D01 3px;
     display: flex;
@@ -391,8 +387,6 @@ textarea{
 .toggle-comment-button{
     width: 2rem;
     height: 2rem;
-    
-    border: solid red 2px;
 }
 
 .edit-comments{

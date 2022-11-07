@@ -399,9 +399,7 @@ const Card = (data) => {
                                 {allCommentsDatas &&
                                     allCommentsDatas.reverse() &&
                                     allCommentsDatas.map((comment) => {
-                                       commentId =comment.id 
-                                        console.log('commentId from map',commentId)
-                                        console.log('postfrom map : ', comment.id)
+                                       commentId =comment.id
                                         return <CommentCard comment={comment} key={comment.id} />
                                     })}
                             </ul>
