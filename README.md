@@ -34,7 +34,7 @@ Lancez la commande 'npm install' pour recevoir les dépendances du frontend et p
 
 Environnement :
 Pour pouvoir lancer le projet il faudra encore une étape.
-Créez un fichier .env dans le backend avec les nom de variables d'environnement suivants :
+Créez un fichier .env dans le backend avec les nom de variables d'environnement suivants :  
 DB_USERNAME=  
 DB_PASSWORD=  
 DB_NAME=  
