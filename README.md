@@ -16,7 +16,7 @@ Afin de pouvoir lancer le projet veuillez suivre les étapes ci-dessous :
 
 procurez-vous :
 Node.js
-REact.js
+React.js
 MySQL
 
 
