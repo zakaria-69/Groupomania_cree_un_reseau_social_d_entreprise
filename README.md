@@ -4,7 +4,7 @@ P7 parcour développeur Web Openclassrooms
 Créez un réseaux social d'entreprise
 
 ________________________________________________
-Informations globales sur les technologies utilisées sur ce projet:
+Informations globales sur les technologies utilisées sur ce projet:  
 React.js  
 Babel  
 Node.js  
