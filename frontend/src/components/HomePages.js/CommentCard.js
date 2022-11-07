@@ -44,8 +44,7 @@ const CommentCard = (data) => {
                 url: `${process.env.REACT_APP_API_URL}api/comments/` + comment.id,
                 data: {
                     content,
-                    UserId: comment.UserId,
-                    CommentId: comment.CommentId
+                    UserId: comment.UserId
                 },
                 headers: {
                     authorization: 'bearer ' + localStorage.getItem('token'),

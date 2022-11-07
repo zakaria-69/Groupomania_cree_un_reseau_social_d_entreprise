@@ -31,4 +31,7 @@ router.post('/:id/like',auth,postCtrl.likePost)
 //read one
 router.get('/:id/comments',auth, commentCtrl.displayAllCommentsForPost);
 
+//create
+router.post('/:id/comment',auth, commentCtrl.createComment);
+
 module.exports = router;

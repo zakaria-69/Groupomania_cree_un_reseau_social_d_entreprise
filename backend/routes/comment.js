@@ -3,8 +3,7 @@ const router = express.Router();
 const auth = require('../middleware/auth')
 const commentCtrl = require("../controllers/comment")
 
-//create
-router.post('/',auth, commentCtrl.createComment);
+
 
 //read all
 router.get('/',auth, commentCtrl.displayAllComments);

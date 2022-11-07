@@ -60,6 +60,9 @@ Une fois les dépendances du front acquises,afin de lancer le projet,rendez vous
 le frontend fonctionnera sur le port 3000 ou à l'adresse ' http://localhost:3000/' par défaut.
 
 Base de données : 
+Base de donnée MySQL / ORM sequelize.
+Dump sql joint au projet
+
 
 
 

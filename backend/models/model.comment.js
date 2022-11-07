@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       allowNull:false,
     },
-    CommentId:{
-      type:DataTypes.INTEGER,
-      allowNull:false,
-    },
     content:{
       type:DataTypes.STRING(500),
       allowNull:false,
+    },
+    PostId:{
+      type:DataTypes.INTEGER,
+      allowNull:true,
     },
     like:{
       type:DataTypes.INTEGER

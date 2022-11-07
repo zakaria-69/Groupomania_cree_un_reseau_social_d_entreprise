@@ -132,4 +132,11 @@ footer h4 {
     footer a:active{
         color: #FFD7D7;
     }
+
+    .footer-card{
+        margin: 3% 0;
+        border: none;
+    }
+
+
 }

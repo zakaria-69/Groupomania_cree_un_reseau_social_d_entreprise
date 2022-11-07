@@ -24,14 +24,28 @@ const Card = (data) => {
     const post = data.post;
     const comment = data.comment;
 
+    const getComments =  async () => {
+         //get post 
+         axios.get(`${process.env.REACT_APP_API_URL}api/posts/` +post.id + `/comments`,
+         {
+             headers: { authorization: 'bearer ' + localStorage.getItem('token') },
+             Accept: 'application/json',
+             'Content-Type': 'application/json',
+         })
+         .then((res) => {
+             setAllCommentsDatas(res.data)
+         })
+         .catch((err) => console.log(err));
+
+    }
+
    const handleSubmitComment = async () => { 
   await axios({
         method: "post",
-        url: `${process.env.REACT_APP_API_URL}api/comments`,
+        url: `${process.env.REACT_APP_API_URL}api/posts/`+post.id + `/comment`,
         data: {
             content,
-            UserId: userId,
-            CommentId :commentId
+            UserId: userId
         },
         headers: {
             authorization: 'bearer ' + localStorage.getItem('token'),
@@ -44,7 +58,10 @@ const Card = (data) => {
             alert('Commentaire crée avec succès');
         })
         .catch((err) => alert(console.log(err))); 
- } 
+
+        getComments();   
+        }
+  
 
    //get user pour recuperer les data du user de chaque post
     useEffect(() => {
@@ -69,18 +86,7 @@ const Card = (data) => {
                     setUserInfos(res.data)
                 })
                 .catch((err) => console.log(err));
-                
-                //get post 
-                axios.get(`${process.env.REACT_APP_API_URL}api/posts/` +post.id + `/comments`,
-                {
-                    headers: { authorization: 'bearer ' + localStorage.getItem('token') },
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                })
-                .then((res) => {
-                    setAllCommentsDatas(res.data)
-                })
-                .catch((err) => console.log(err));
+                getComments();
     }
 , [])
 
@@ -216,10 +222,10 @@ const Card = (data) => {
                 </h3>
                 <div className='date-style-handler'>
                     <span className='creation-date'>
-                        {timeStampHandler(createdAt)}
+                        crée le : {timeStampHandler(createdAt)}
                         </span>
                     <span className='udpated-date'>
-                        {timeStampHandler(updatedAt)}
+                        modifié le : {timeStampHandler(updatedAt)}
                         </span>
                 </div>
             </div>
@@ -393,7 +399,7 @@ const Card = (data) => {
                                 {allCommentsDatas &&
                                     allCommentsDatas.reverse() &&
                                     allCommentsDatas.map((comment) => {
-                                       commentId =comment.CommentId 
+                                       commentId =comment.id 
                                         console.log('commentId from map',commentId)
                                         console.log('postfrom map : ', comment.id)
                                         return <CommentCard comment={comment} key={comment.id} />

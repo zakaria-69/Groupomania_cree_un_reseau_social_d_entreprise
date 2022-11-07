@@ -525,6 +525,22 @@ min-width: 70%;
         height: 100%;
         width: 100%;
     }
+
+    .body-card{
+    width: 80%;
+    margin: 2% auto;
+    border: dotted #FD2D01 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .post-imageUrl{
+        max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover
+    }
 }
 
 

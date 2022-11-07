@@ -1,4 +1,4 @@
-const { user } = require('../models');
+const { user, comment } = require('../models');
 
 const Comment = require('../models').Comment;
 const User = require('../models').User;
@@ -7,20 +7,23 @@ const Voter = require('../models').Voter;
 //create Comment
 exports.createComment = (req, res, next) => {
     Comment.create({
-        ...req.body
-    }).then(() => res.status(201).json({ message: 'Objet enregistré !' }))
+            UserId: req.body.UserId,
+            content: req.body.content,
+            PostId: req.params.id
+          })
+          .then(() => res.status(201).json({ message: 'Objet enregistré !' }))
         .catch(error => res.status(400).json({ error }));
 }
 
 //afficher tout les Comments
 exports.displayAllComments = (req, res, next) => {
-    Comment.findAll({ attributes: ["id", "UserId", "like", "content", "createdAt", "updatedAt", "CommentId", "PostId"] })
+    Comment.findAll({ attributes: ["id", "UserId", "like", "content", "createdAt", "updatedAt","PostId"] })
         .then(Comment => res.status(200).json(Comment))
         .catch(error => res.status(400).json({ error }))
 }
 
 exports.displayAllCommentsForPost =(req,res,next) => {
-    Comment.findAll( { where: { id: req.params.id }, attributes: ["id", "UserId", "like", "content", "createdAt", "updatedAt", "CommentId", "PostId"] })
+    Comment.findAll( { where: { PostId: req.params.id }, attributes: ["id", "UserId", "like", "content", "createdAt", "updatedAt","PostId"] })
     .then(Comment => res.status(200).json(Comment))
     .catch(error => res.status(400).json({ error }))
 }
