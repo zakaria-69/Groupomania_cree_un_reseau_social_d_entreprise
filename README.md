@@ -5,19 +5,19 @@ Créez un réseaux social d'entreprise
 
 ________________________________________________
 Informations globales sur les technologies utilisées sur ce projet:
-React.js
-Babel
-Node.js
-Express
-Mysql 
-Sequelize
+React.js  
+Babel  
+Node.js  
+Express  
+Mysql   
+Sequelize  
 
 Afin de pouvoir lancer le projet veuillez suivre les étapes ci-dessous :
 
-procurez-vous :
-Node.js
-React.js
-MySQL
+procurez-vous :  
+Node.js  
+React.js  
+MySQL  
 
 
 
@@ -35,13 +35,13 @@ Lancez la commande 'npm install' pour recevoir les dépendances du frontend et p
 Environnement :
 Pour pouvoir lancer le projet il faudra encore une étape.
 Créez un fichier .env dans le backend avec les nom de variables d'environnement suivants :
-DB_USERNAME=
-DB_PASSWORD=
-DB_NAME=
-DB_HOST=
-PORT =
-DB_DIALECT = 
-TOKEN_KEY_SECRET = 
+DB_USERNAME=  
+DB_PASSWORD=  
+DB_NAME=  
+DB_HOST=  
+PORT =  
+DB_DIALECT =   
+TOKEN_KEY_SECRET =   
 
 puis créez un fichier .env dans le frontend avec le nom de variable d'environnement suivant :
 REACT_APP_API_URL =
