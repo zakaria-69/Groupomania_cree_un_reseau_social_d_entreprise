@@ -2,6 +2,7 @@ const express = require ('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const dotenv = require('dotenv').config();
+const helmet = require('helmet');
 
 const db = require("./models/index")
 
@@ -12,6 +13,7 @@ const cors = require("cors");
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
 const commentRoutes = require('./routes/comment');
+
 
 
 const sequelize = require('sequelize');
@@ -26,6 +28,7 @@ app.use((req, res, next) => {
 
 app.use(express.json({  extended: true }));
 app.use(express.urlencoded({  extended: true }));
+app.use(helmet({crossOriginResourcePolicy : false}));
 
 app.use('/api/users',userRoutes);
 app.use('/api/posts',postRoutes);
