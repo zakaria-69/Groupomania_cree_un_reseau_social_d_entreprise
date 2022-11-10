@@ -50,17 +50,14 @@ const CommentCard = (data) => {
                     authorization: 'bearer ' + localStorage.getItem('token'),
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
-
-                }
+                },
             })
                 .then((res) => {
                     console.log(res)
                     alert('Post modifié avec succès');
-                    setContent('')
-
+                    window.location.reload();
                 })
                 .catch((err) => alert(console.log(err)));
-            setContent('')
         }
     }
 

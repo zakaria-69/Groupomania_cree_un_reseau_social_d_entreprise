@@ -75,6 +75,18 @@ const Card = (data) => {
           setText(post.text);
           setTitle(post.title);
 
+          //get user for username
+          axios.get(`${process.env.REACT_APP_API_URL}api/users/` + post.UserId,
+          {
+              headers: { authorization: 'bearer ' + localStorage.getItem('token') },
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+          })
+          .then((res) => {
+              setUserInfos(res.data)
+          })
+          .catch((err) => console.log(err));
+
             // get user
             axios.get(`${process.env.REACT_APP_API_URL}api/users/` + userId,//post.UserId,
                 {
@@ -83,7 +95,8 @@ const Card = (data) => {
                     'Content-Type': 'application/json',
                 })
                 .then((res) => {
-                    setUserInfos(res.data)
+                    console.log(userInfos)
+                    //setUserInfos(res.data)
                 })
                 .catch((err) => console.log(err));
                 getComments();
