@@ -66,24 +66,25 @@ exports.udpateOnePost = (req, res, next) => {
 exports.deleteOnePost = (req, res, next) => {
     Post.findOne({ where: { id: req.params.id } })
         .then(post => {
-            // if (post.UserId != req.auth.userId)
             User.findOne({ where: { id: req.auth.userId } })
                 .then((user) => {
-                    if (user.isAdmin != true && post.UserId !== req.auth.userId) {
-                        {
-                            res.status(401).json({ message: `vous n'êtes pas autorisé a supprimé ce message` });
-                        }
-                    } else {
+                    if (post.UserId !== req.auth.userId && user.isAdmin != true) {
+                            res.status(401).json({ message: `vous n'êtes pas autorisé a supprimé ce message` });                      
+                    } else if (post.UserId === req.auth.userId && user.isAdmin === true && post.imageUrl === true) {
                         const filename = post.imageUrl.split("/images/")[1];
                         fs.unlink(`images/${filename}`, () => {
                             Post.destroy({ where: { id: req.params.id } })
                                 .then(() => { res.status(200).json({ message: "Objet supprimé" }) })
                                 .catch(error => res.status(401).json({ error }));
                         });
+                    }else{
+                        Post.destroy({ where: { id: req.params.id } })
+                                .then(() => { res.status(200).json({ message: "Objet supprimé" }) })
+                                .catch(error => res.status(401).json({ error }));
                     }
                 })
-                .catch(error => {
-                    res.status(500).json({ error });
+        .catch(error => {
+                res.status(500).json({ error });
                 })
         })
 }
@@ -95,7 +96,7 @@ exports.deleteImage = (req, res, next) => {
         .then(post => {
             User.findOne({ where: { id: req.auth.userId } })
             .then((user) =>{
-            if (post.UserId != req.auth.userId && user.isAdmin !== true) {
+            if (post.UserId !== req.auth.userId && user.isAdmin != true) {
                 res.status(401).json({ message: 'not authorized' });
             } else {
                 const filename = post.imageUrl.split("/images/")[1];
