@@ -14,7 +14,6 @@ const CommentCard = (data) => {
     let userId = localStorage.getItem('userId')
     userId = parseInt(userId)
     const comment = data.comment;
-    console.log('data.comment', comment)
 
     useEffect(() => {
         setCreatedAt(comment.createdAt);
@@ -74,7 +73,6 @@ const CommentCard = (data) => {
                         }
                     })
                     .then((res) => {
-
                         alert('vôtre post a été correctement supprimé')
                         window.location.reload();
                         console.log(res)
@@ -209,4 +207,6 @@ const CommentCard = (data) => {
     )
 }
 
-export default CommentCard;
+export default CommentCard; 
+
+

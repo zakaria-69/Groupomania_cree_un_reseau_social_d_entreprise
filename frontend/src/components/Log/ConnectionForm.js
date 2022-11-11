@@ -125,6 +125,11 @@ const ConnectionForm = () => {
             fieldValidation.style.border = 'solid red 2px';
             e.preventDefault();
         }
+        else if(!firstName.match(/^[a-zA-Z-]{2,25}$/) || !lastName.match(/^[a-zA-Z-]{2,25}$/) || !userName.match(/^[a-zA-Z0-9-_]{2,25}$/)
+        || !email.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i) || !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,25}$/)
+        || !passwordCheck.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,25}$/) || !terms.checked){
+            e.preventDefault();
+        }
         //if all ok execute Form treatement                
         else {
             await axios({
@@ -141,7 +146,6 @@ const ConnectionForm = () => {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'multipart/form-data'
-
                 }
             })
                 .then((res) => {
@@ -153,15 +157,11 @@ const ConnectionForm = () => {
                 })
                 .catch((res) => {
                     console.log(res)
-                    //fieldError.innerHTML=res.response.data.error.errors[0].message
                     emailValidation.style.border = 'solid red 2px';
-                    emailError.innerHTML = res.response.data.error.errors[0].message;
+                    emailError.textContent = res.response.data.error.errors[0].message;
                     emailError.style.color = 'red';
-
-
                 })
         }
-
     }
 
     return (

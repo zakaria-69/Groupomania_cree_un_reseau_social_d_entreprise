@@ -58,14 +58,11 @@ const Card = (data) => {
             alert('Commentaire crée avec succès');
         })
         .catch((err) => alert(console.log(err))); 
-
-        getComments();   
+        getComments();        
         }
   
-
    //get user pour recuperer les data du user de chaque post
     useEffect(() => {
-        console.log('start useffect card : ' , post.id)
           setCreatedAt(post.createdAt);
           setUpdatedAt(post.updatedAt);
           setUid(post.UserId);
@@ -74,7 +71,6 @@ const Card = (data) => {
           setLike(post.like);
           setText(post.text);
           setTitle(post.title);
-
           //get user for username
           axios.get(`${process.env.REACT_APP_API_URL}api/users/` + post.UserId,
           {
@@ -99,7 +95,7 @@ const Card = (data) => {
                     //setUserInfos(res.data)
                 })
                 .catch((err) => console.log(err));
-                getComments();
+                getComments();                
     }
 , [])
 
@@ -119,6 +115,7 @@ const Card = (data) => {
                     })
                     .catch((err) => {
                         alert(`Désolé!vous n'êtes pas autorisé a supprimé ce message!`)
+                        console.log(err)
                     });
             }; deleteOnePost()
         } else {
@@ -142,7 +139,7 @@ const Card = (data) => {
                         headers: {
                             authorization: 'bearer ' + localStorage.getItem('token'),
                             Accept: 'application/json',
-                            'Content-Type': 'multipart/form-data',
+                            'Content-Type':'multipart/form-data',
                         }
                     })
                         .then((res) => {
@@ -150,7 +147,6 @@ const Card = (data) => {
                             setAllPostsDatas(res.data)
                             alert('vôtre post a été correctement modifié')
                             setIsUpdated(false)
-                            // window.location.reload();
                             console.log('AllPostsDatas from patch post', res)
                         })
                         .catch((err) => {
@@ -172,12 +168,12 @@ const Card = (data) => {
                         headers: {
                             authorization: 'bearer ' + localStorage.getItem('token'),
                             Accept: 'application/json',
-                            'Content-Type': 'application/json',
+                            'Content-Type':'application/json',
                         }
                     })
                     .then((res) => {
                         alert('vôtre image a été correctement supprimé')
-                        window.location = './'
+                        window.location = './';
                     })
                     .catch((err) => {
                         console.log(err)
@@ -410,9 +406,7 @@ const Card = (data) => {
                             </div>
                             <ul id='display-all-relative-comments'>
                                 {allCommentsDatas &&
-                                    allCommentsDatas.reverse() &&
                                     allCommentsDatas.map((comment) => {
-                                       commentId =comment.id
                                         return <CommentCard comment={comment} key={comment.id} />
                                     })}
                             </ul>
@@ -426,3 +420,4 @@ const Card = (data) => {
 }
 
 export default Card;
+
